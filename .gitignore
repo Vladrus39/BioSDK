@@ -51,7 +51,6 @@ outputs/
 .deepseek/
 .SESSION_ACTIVE_PROJECT.md
 .SESSION_LOG.md
-SESSION_START_PROMPT.md
 
 # Keep these
 !README.md
