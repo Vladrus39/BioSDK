@@ -968,3 +968,108 @@ python _list_adapters.py
 ---
 
 *Handoff v0.1.3. GitHub published, Open Core active, deploy script ready. FinalSpark token next.*
+
+
+---
+
+## v0.1.4 Session: Repositioning + Real PyPI + New Labeled Data (2026-05-12)
+
+### Session Summary
+
+**Positioning fix** — following external review, repositioned from "vendor-neutral standard / Vulkan for wetware"
+to "unified neural data library / pandas.read_* for neural data". All overclaims removed.
+
+### Closed This Session
+
+- [x] README full repositioning rewrite — honest language, evidence bundles first
+- [x] Real PyPI publication: `pip install biosdk` (pypi.org, v0.1.4)
+- [x] GitHub description updated via API
+- [x] pyproject.toml: description + dev extras
+- [x] SECURITY.md: 0.1.4 in supported versions
+- [x] CHANGELOG.md: [0.1.4] entry
+- [x] requirements.txt: synced with pyproject.toml
+- [x] Sleep PSG classification: 66.7% cross-subject (5-class, LOSO, chance 20%, 3.3x)
+- [x] OpenNeuro eyes open/closed: 83.7% cross-session (2-class, LOSO, chance 50%, 1.7x)
+- [x] MASTER_STATUS_V85.md: v0.1.4 addendum
+- [x] PROJECT_STATUS_V85.json: version 0.1.4, new results
+- [x] SESSION_START_PROMPT.md: updated positioning + priorities
+- [x] All documentation synced across repo
+
+### New Labeled Classification Results
+
+| Dataset | Task | Best RF | Chance | Improvement | Samples |
+|---------|------|---------|--------|-------------|---------|
+| OpenNeuro ds007558 | Eyes open/closed | 83.7% | 50% | 1.7x | 647 |
+| Sleep PSG (PhysioNet) | Sleep staging (5-cl) | 66.7% | 20% | 3.3x | 303 |
+| Tressoldi H3 BBI | Stimulus vs rest | 64.2% | 50% | 1.3x | 10,878 |
+| Giroldini MEA | 4-class stimulus | 52.4% | 25% | 2.1x | 11,547 |
+
+**Honest baseline**: sklearn SVM achieves 50.7% on Giroldini MEA. BioSDK adds +1.7pp.
+Value proposition: unified API + evidence bundles, not algorithmic edge.
+
+### Repositioning Summary
+
+| Aspect | Was | Now |
+|--------|-----|-----|
+| Title | Vendor-Neutral Standard | Unified Neural Data Library |
+| Analogy | Vulkan for wetware | pandas.read_* for neural data |
+| Main metric | 99.67% cross-modal | Per-dataset honest results |
+| Closed-loop | Presented as achievement | Designed + simulator-tested; hardware pending |
+| Unique selling point | Standard | Evidence bundles (SHA256+HMAC) |
+| PyPI | TestPyPI only | Real PyPI (pypi.org) |
+
+### Key URLs
+
+- Real PyPI: https://pypi.org/project/biosdk/
+- TestPyPI: https://test.pypi.org/project/biosdk/
+- GitHub: https://github.com/Vladrus39/BioSDK
+- Install: `pip install biosdk`
+
+### Remaining Gaps (4)
+
+- [~] Cross-dataset classification (MCS unlabeled)
+- [~] FinalSpark API token (application submitted 2026-05-12)
+- [~] Closed-loop on hardware (7/7 safety gates on simulator)
+- [~] Zero beta participants (packet ready: beta/BETA_INVITE_PACKET_V93.md)
+
+### Files Changed This Session
+
+| File | Change |
+|------|--------|
+| `README.md` | Full repositioning rewrite |
+| `pyproject.toml` | Description + dev extras |
+| `.env` | Real PyPI token, v0.1.4 |
+| `SECURITY.md` | 0.1.4 in supported versions |
+| `CHANGELOG.md` | [0.1.4] entry |
+| `requirements.txt` | Synced with pyproject.toml |
+| `biosdk/__init__.py` | importlib.metadata version (was already done) |
+| `SESSION_START_PROMPT.md` | Full rewrite |
+| `MASTER_STATUS_V85.md` | v0.1.4 addendum |
+| `HANDOFF_FOR_DEEPSEEK_2026_05_11.md` | This addendum |
+| `PROJECT_STATUS_V85.json` | Version + results update |
+| `_deploy.py` | Unicode fix (em dash, arrow) |
+| `outputs/v93_sleep_psg_staging/` | Sleep PSG features + labels |
+| `outputs/v93_openneuro_eeg/` | OpenNeuro features + labels |
+
+### Next Session Priority
+
+1. Check email vladimoryachok@gmail.com for FinalSpark token
+2. If token: certify finalspark adapter on live hardware
+3. If no token: download CRCNS datasets, 3Brain sample data
+4. Cross-dataset classification with labels across all 4 datasets
+5. Beta participant outreach
+
+### Quick Commands for Next Session
+
+```powershell
+cd "C:\Users\vladi\Desktop\Braine\BiC OS\biogpu-core-v5_0_bic_os_first_mover_roadmap"
+python _session_check.py                    # Status
+python _bic_os_cross_classify.py            # Cross-modal (99.67%)
+python _list_adapters.py                     # 7 adapters
+pip install biosdk                           # Install from real PyPI
+python _deploy.py --prod                     # Full deploy cycle
+```
+
+---
+
+*Handoff v0.1.4. Repositioned, real PyPI published, 4 labeled datasets classified.*

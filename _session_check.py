@@ -16,5 +16,5 @@ for g in s['honest_gaps_remaining']:
 print()
 print(f"NSI adapters certified: {len(s['nsi_adapters_certified'])}")
 print(f"GitHub: {'https://github.com/Vladrus39/BioSDK'}")
-print(f"PyPI: https://test.pypi.org/project/biosdk/")
+print(f"PyPI: https://pypi.org/project/biosdk/")
 print(f"Deploy: python _deploy.py")

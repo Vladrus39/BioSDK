@@ -1,10 +1,10 @@
 {
   "project": "BioSDK",
-  "version": "v0.1.3",
+  "version": "v0.1.4",
   "session_date": "2026-05-12",
   "generated_at": "2026-05-12T03:25:19.002558+00:00",
   "handoff_file": "HANDOFF_FOR_DEEPSEEK_2026_05_11.md",
-  "type": "Vendor-Neutral Standard / SDK",
+  "type": "Unified Neural Data Library",
   "production_ready": true,
   "production_domains_ready": 11,
   "production_domains_total": 12,
@@ -159,7 +159,7 @@
     "honest_note": "Tested on simulator only. Hardware actuation requires: real MEA + vendor SDK + lab SOP + safety reviewer"
   },
   "honest_gaps_remaining": [
-    "cross_dataset_classification_accuracy_mcs_no_labels",
+    "cross_dataset_classification_mcs_no_labels",
     "external_api_validation_awaiting_finalspark_token",
     "closed_loop_hardware_still_required",
     "zero_beta_participants_but_packet_ready"
@@ -193,11 +193,11 @@
     "live_actuation": "BLOCKED_BY_DEFAULT"
   },
   "next_actions_priority": [
-    "certify_finalspark_adapter_when_token_arrives",
-    "send_beta_invite_packet_to_potential_participants",
     "check_finalspark_email_for_token_response",
-    "closed_loop_hardware_integration_with_finalspark",
-    "cross_dataset_classification_with_labels"
+    "if_token_available_certify_finalspark_adapter",
+    "if_no_token_send_beta_invites_or_download_crcns_3brain",
+    "cross_dataset_classification_with_labels",
+    "publish_to_real_pypi_done"
   ],
   "_caveat_2026_05_11": "All accuracy numbers are current-snapshot. Further testing may change values. Re-verify before claims.",
   "cross_modal_v90": {
@@ -446,10 +446,29 @@
   "github_public": true,
   "github_files": 1159,
   "pypi_package": "biosdk",
-  "pypi_version": "0.1.3",
-  "pypi_url": "https://test.pypi.org/project/biosdk/0.1.3/",
+  "pypi_version": "0.1.4",
+  "pypi_url": "https://pypi.org/project/biosdk/",
   "license_model": "Open Core (MIT Community + Commercial Enterprise)",
   "deploy_script": "_deploy.py",
   "env_file": ".env (gitignored, all secrets consolidated)",
-  "single_readme_strategy": "README.md serves both GitHub and PyPI via readme= in pyproject.toml"
+  "single_readme_strategy": "README.md serves both GitHub and PyPI via readme= in pyproject.toml",
+  "testpypi_url": "https://test.pypi.org/project/biosdk/0.1.3/",
+  "new_v93_results": {
+    "sleep_psg_staging": {
+      "task": "5-class sleep stage classification",
+      "accuracy": 0.667,
+      "chance": 0.2,
+      "improvement": "3.3x",
+      "samples": 303,
+      "cv_method": "Leave-One-Subject-Out"
+    },
+    "openneuro_eyes": {
+      "task": "eyes open vs closed classification",
+      "accuracy": 0.837,
+      "chance": 0.5,
+      "improvement": "1.7x",
+      "samples": 647,
+      "cv_method": "Leave-One-Session-Out"
+    }
+  }
 }
