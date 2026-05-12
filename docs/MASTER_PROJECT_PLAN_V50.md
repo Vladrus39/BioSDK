@@ -876,3 +876,51 @@ Key achievements since v8.0:
 - `docs/HONEST_STATUS_V80.md` — still valid, superseded by MASTER_STATUS_V85.md
 - `docs/PROJECT_DEEP_AUDIT_V85.md` — unchanged (audit is independent of name)
 - `docs/UNIQUENESS_POSITIONING_V85.md` — unchanged (positioning is independent of name)
+
+
+---
+
+## v0.1.3 Addendum: GitHub Publication + Open Core (2026-05-12)
+
+### BioSDK Now Public
+
+- **GitHub**: https://github.com/Vladrus39/BioSDK (public, 1159 files)
+- **PyPI**: https://test.pypi.org/project/biosdk/0.1.3/
+- **Package**: `biosdk` v0.1.3, installable via `pip install -i https://test.pypi.org/simple/ biosdk`
+- **License**: Open Core — MIT (community) + Commercial (enterprise)
+- **Deploy**: `python _deploy.py` (build + PyPI + GitHub + verify in one command)
+- **Secrets**: `.env` file consolidates all tokens/keys (gitignored)
+- **Single README**: `README.md` serves both GitHub and PyPI (`readme = "README.md"` in pyproject.toml)
+
+### What Changed Since v5.0 Master Plan
+
+| Item | v5.0 Plan | v0.1.3 Reality |
+|------|-----------|----------------|
+| NSI-1.0 adapters | Planned | 7 (5 certified + 1 skeleton + 1 ref) |
+| Conformance tests | Planned | 83/83 PASS |
+| Cross-modal classification | Not in scope | 99.67% (6.0x chance) |
+| pip package | Future | Published (TestPyPI v0.1.3) |
+| GitHub repo | Future | Public (Vladrus39/BioSDK) |
+| Licensing | Unspecified | Open Core (MIT + Commercial) |
+| Deploy automation | None | `_deploy.py` — one-command release |
+| Beta participants | Planned | 0 (packet ready) |
+
+### Remaining Gaps (from v5.0 scope + extended)
+
+- [~] Cross-dataset classification (MCS unlabeled)
+- [~] FinalSpark API token (application submitted)
+- [~] Closed-loop on hardware (token-dependent)
+- [~] Beta participants (packet ready)
+
+### Path Forward (Updated)
+
+1. Check email for FinalSpark token
+2. Certify FinalSpark adapter on live hardware
+3. Send beta invite packet
+4. Publish to real PyPI
+5. Cross-dataset classification with labels
+6. Peer-reviewed publication
+
+---
+
+*Master Project Plan updated v0.1.3. GitHub published, pip released, Open Core active.*

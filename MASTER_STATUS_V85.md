@@ -1078,3 +1078,110 @@ Adapter built, 41/41 conformance tests on mocks, Shannon safety limits mapped.
 
 *Master Status v9.5. 7 adapters, 99.67% cross-modal, pip package ready. Waiting for FinalSpark token.*
 
+
+---
+
+## v0.1.3 Addendum: GitHub Publication + Open Core + Unified Deploy (2026-05-12)
+
+### GitHub Repository — LIVE
+
+- **URL**: https://github.com/Vladrus39/BioSDK
+- **Visibility**: Public
+- **Default branch**: master
+- **Commits**: 3 (initial + URL update + deploy script)
+- **Files**: 1159 files, 106,902 lines
+- **SSH Key**: `id_ed25519_biosdk` (C:\Users\vladi\.ssh\)
+- **Git remote**: `git@github.com:Vladrus39/BioSDK.git` (SSH) / `https://github.com/Vladrus39/BioSDK.git` (HTTPS)
+
+### Licensing Model — Open Core
+
+| Tier | License | Includes | Price |
+|------|---------|----------|-------|
+| **Community** | MIT | NSI-1.0 adapters, features, readout, evidence bundles, dashboard | Free |
+| **Enterprise** | Commercial | Closed-loop controller, managed cloud, SLA, priority support | Contact |
+
+**Files**: `LICENSE` (MIT), `COMMERCIAL_LICENSE.md` (Enterprise terms)
+
+### Pip Package — v0.1.3
+
+- **Package**: `biosdk` v0.1.3
+- **PyPI**: https://test.pypi.org/project/biosdk/0.1.3/
+- **Install**: `pip install -i https://test.pypi.org/simple/ biosdk`
+- **Metadata**: MIT license (SPDX), 11 classifiers, 13 keywords, 4 project URLs
+- **license-files**: LICENSE + COMMERCIAL_LICENSE.md included in wheel
+
+### Unified Deploy Script — `_deploy.py`
+
+Single command for full release cycle:
+```bash
+python _deploy.py                  # build + PyPI + GitHub + verify
+python _deploy.py --build-only     # just build wheel
+python _deploy.py --pypi-only      # build + upload
+python _deploy.py --version 0.1.4  # bump version first
+```
+
+Cycle: `build` → `twine upload` → `git commit + push` → `pip install verify`
+
+### Project Secrets — `.env`
+
+All credentials consolidated in one file (gitignored):
+- `GITHUB_TOKEN`, `GITHUB_REMOTE`, `SSH_KEY_PATH`, `SSH_KEY_PUB`
+- `PYPI_TOKEN`, `PYPI_REPOSITORY=testpypi`, `PYPI_URL`, `PYPI_PACKAGE`
+- `FINALSPARK_TOKEN` (empty, pending)
+- `PYTHON_PATH=D:/GameDev/miniconda3/python.exe`
+- `PROJECT_ROOT`, `AUTHOR`, `EMAIL`
+
+### Single README Strategy
+
+`README.md` is the single source for both:
+- **GitHub**: auto-displayed on repo page
+- **PyPI**: `readme = "README.md"` in pyproject.toml
+
+Update one file → both platforms updated (after rebuild+upload for PyPI).
+
+### Updated URLs
+
+| Resource | URL |
+|----------|-----|
+| GitHub repo | https://github.com/Vladrus39/BioSDK |
+| PyPI package | https://test.pypi.org/project/biosdk/ |
+| Install | `pip install -i https://test.pypi.org/simple/ biosdk` |
+| Issues | https://github.com/Vladrus39/BioSDK/issues |
+
+### Gap Status (v0.1.3)
+
+**Closed (everything from v9.5 + new):**
+- [x] GitHub repository published (Vladrus39/BioSDK)
+- [x] Open Core licensing (MIT + Commercial)
+- [x] Unified deploy script (`_deploy.py`)
+- [x] Project secrets consolidated (`.env`)
+- [x] Single README for GitHub + PyPI
+- [x] pip package v0.1.3 published to TestPyPI
+- [x] pyproject.toml URLs updated to Vladrus39/BioSDK
+
+**Remaining (4):**
+- [~] Cross-dataset classification (MCS unlabeled)
+- [~] FinalSpark API token (application submitted)
+- [~] Closed-loop on hardware (token-dependent)
+- [~] Zero beta participants (packet ready)
+
+### Next Actions
+
+1. Check email vladimoryachok@gmail.com for FinalSpark token
+2. If token: certify finalspark adapter on live hardware
+3. Send beta invite packet
+4. Consider: publish to real PyPI (not test.pypi.org)
+
+### Key Numbers (v0.1.3)
+
+- NSI adapters: 7 (5 cert + 1 skeleton + 1 ref)
+- Conformance: 42 cert + 41 mock = 83 total
+- Cross-modal: 99.67% (channel-averaged, 6.0x chance)
+- GitHub: 1159 files, public
+- PyPI: v0.1.3 on TestPyPI
+- Deploy: `python _deploy.py` — one command
+
+---
+
+*Master Status v0.1.3. GitHub published, Open Core licensed, deploy script ready. Waiting for FinalSpark.*
+

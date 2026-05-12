@@ -907,3 +907,65 @@ python -c "import biosdk; print(biosdk.__version__); print(biosdk.list_adapters(
 ---
 
 *Handoff v9.5. 7 adapters, 99.67% cross-modal, pip package ready for release. FinalSpark token next.*
+
+
+
+---
+
+## v0.1.3 Addendum: GitHub Publication + Open Core + Deploy Script (2026-05-12)
+
+### Session v0.1.3 Summary
+
+**Closed this session:**
+- [x] GitHub repository published (Vladrus39/BioSDK, public, 1159 files)
+- [x] Open Core licensing model (MIT community + Commercial enterprise)
+- [x] Unified deploy script (`_deploy.py` — build + PyPI + GitHub + verify)
+- [x] Project secrets consolidated in `.env` (gitignored)
+- [x] Single README strategy (one file for GitHub + PyPI)
+- [x] pip package republished as v0.1.3 (SPDX license, 11 classifiers)
+- [x] pyproject.toml URLs updated to Vladrus39/BioSDK
+- [x] SSH key generated (`id_ed25519_biosdk`)
+- [x] All master documentation updated (MASTER_STATUS, MASTER_PROJECT_PLAN, PROJECT_STATUS, SESSION_START_PROMPT)
+
+**Key URLs:**
+- GitHub: https://github.com/Vladrus39/BioSDK
+- PyPI: https://test.pypi.org/project/biosdk/0.1.3/
+- Install: `pip install -i https://test.pypi.org/simple/ biosdk`
+- Deploy: `python _deploy.py`
+
+**Secrets location:** `.env` (all tokens/keys in one place)
+- `GITHUB_TOKEN`, `PYPI_TOKEN`, `SSH_KEY_PATH`, `FINALSPARK_TOKEN` (empty)
+
+**Remaining gaps (unchanged):**
+- Cross-dataset classification (MCS unlabeled)
+- FinalSpark token (application submitted)
+- Closed-loop on hardware (token-dependent)
+- Zero beta participants (packet ready)
+
+### Next Session Priority
+
+1. Check email vladimoryachok@gmail.com for FinalSpark token
+2. If token: certify finalspark adapter on live hardware
+3. Send beta invite packet
+4. Publish to real PyPI
+5. Cross-dataset classification with labels
+
+### Scripts for next session
+
+```powershell
+# Quick status
+python _session_check.py
+
+# Full deploy
+python _deploy.py
+
+# Cross-modal classification
+python _bic_os_cross_modal_v95.py
+
+# List all adapters
+python _list_adapters.py
+```
+
+---
+
+*Handoff v0.1.3. GitHub published, Open Core active, deploy script ready. FinalSpark token next.*
