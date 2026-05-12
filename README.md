@@ -109,7 +109,7 @@ NSI-1.0 preserves modality identity. Different modalities SHOULD be far apart.
 | **License** | Open Core: MIT (community) + Commercial (enterprise) |
 | **Author** | Vladislav Dobrovolskii (vladimoryachok@gmail.com) |
 | **PyPI** | https://test.pypi.org/project/biosdk/ |
-| **GitHub** | https://github.com/vladimoryachok/biosdk |
+| **GitHub** | https://github.com/Vladrus39/BioSDK |
 
 ## Key Documents
 

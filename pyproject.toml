@@ -57,10 +57,10 @@ nwb = ["pynwb>=2.0"]
 all = ["biosdk[dashboard,mne,nwb]"]
 
 [project.urls]
-Homepage = "https://github.com/vladimoryachok/biosdk"
-Documentation = "https://github.com/vladimoryachok/biosdk/blob/main/README.md"
-Repository = "https://github.com/vladimoryachok/biosdk"
-Issues = "https://github.com/vladimoryachok/biosdk/issues"
+Homepage = "https://github.com/Vladrus39/BioSDK"
+Documentation = "https://github.com/Vladrus39/BioSDK/blob/master/README.md"
+Repository = "https://github.com/Vladrus39/BioSDK"
+Issues = "https://github.com/Vladrus39/BioSDK/issues"
 
 [tool.setuptools.packages.find]
 include = ["biogpu*", "biosdk*"]
