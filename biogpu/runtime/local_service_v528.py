@@ -27,9 +27,10 @@ from biogpu.runtime.scheduler_api_v527 import CancelRequestV527, SchedulerAPIFac
 
 DEFAULT_OUT = Path("outputs/v528_authenticated_local_service")
 DEFAULT_DB_NAME = "V528_AUTHENTICATED_LOCAL_SERVICE.sqlite3"
-V528_DEVELOPER_API_KEY = "v528-local-developer-key"
-V528_WORKER_API_KEY = "v528-local-worker-key"
-V528_VIEWER_API_KEY = "v528-local-viewer-key"
+import os as _os
+V528_DEVELOPER_API_KEY = _os.environ.get("BIOSDK_DEV_KEY", "fixture-local-dev-key")
+V528_WORKER_API_KEY = _os.environ.get("BIOSDK_WORKER_KEY", "fixture-local-worker-key")
+V528_VIEWER_API_KEY = _os.environ.get("BIOSDK_VIEWER_KEY", "fixture-local-viewer-key")
 
 
 @dataclass(frozen=True)

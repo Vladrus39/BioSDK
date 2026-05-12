@@ -1,0 +1,44 @@
+# Python build
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Tests and evidence (not needed in container)
+tests/
+outputs/
+evidence/
+legacy/
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Docs
+docs/
+paper/
+*.md
+
+# Config (production config should be mounted)
+configs/production*
+
+# Data (should be volume-mounted)
+data/external/
+data/production/
+*.h5
+*.nwb
+*.edf
+
+# Scripts (not needed at runtime)
+scripts/
+
+# Examples (not needed at runtime)
+examples/
+
+# CI/automation
+.github/
+_*.py
+_git_commit.bat

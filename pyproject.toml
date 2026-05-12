@@ -64,6 +64,7 @@ Issues = "https://github.com/Vladrus39/BioSDK/issues"
 
 [tool.setuptools.packages.find]
 include = ["biogpu*", "biosdk*"]
+exclude = ["tests*", "legacy*", "outputs*", "evidence*", "data*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests/current"]

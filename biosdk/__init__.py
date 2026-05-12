@@ -29,7 +29,7 @@ import numpy as np
 # Public API
 # ═══════════════════════════════════════════════════════════════════════
 
-__version__ = "0.1.0"
+__version__ = "0.1.3"
 __all__ = [
     "open", "features", "readout", "evidence_bundle",
     "list_adapters", "certified_adapters", "__version__",
@@ -279,8 +279,13 @@ def evidence_bundle(
     # Sign with SHA256
     content = manifest_path.read_bytes()
     bundle_hash = hashlib.sha256(content).hexdigest()
+    import os as _hmac_os
+    _signing_key = _hmac_os.environ.get(
+        "BIOSDK_SIGNING_KEY",
+        "biosdk-evidence-v0.1"
+    ).encode()
     signature = hmac.new(
-        key=b"biosdk-evidence-v0.1",
+        key=_signing_key,
         msg=content,
         digestmod=hashlib.sha256,
     ).hexdigest()
