@@ -1,0 +1,6 @@
+{
+  "spike_source": "path/to/spikes_or_nwb_or_hdf5",
+  "stimulus_table": "path/to/stimulus_windows.csv",
+  "electrode_map": "path/to/electrode_map.csv",
+  "train_test_split": "path/to/splits.csv"
+}

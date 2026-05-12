@@ -1,0 +1,11 @@
+# Example config for a task-aligned real spike benchmark.
+# Requires real stimulus windows mapped to start_s,end_s,label.
+source_type: txt
+spike_source: data/example_spikes.txt
+windows_path: data/example_stimulus_windows.csv
+time_unit: s
+train_fraction: 0.7
+seed: 1
+readout_bins: 4
+outputs:
+  root: outputs

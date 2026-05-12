@@ -1,0 +1,6 @@
+{
+  "version": "v3.0",
+  "run_mode": "paper_package",
+  "required_outputs": ["v30_manifest.json", "BIOGPU_V30_PROJECT_SUMMARY.md", "v30_claim_ladder.csv", "paper/BIOGPU_CORE_WHITEPAPER.md"],
+  "claims_not_yet_proven": ["live BioGPU prototype", "GPU/CPU energy or performance advantage"]
+}

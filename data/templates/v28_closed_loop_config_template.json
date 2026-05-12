@@ -1,0 +1,13 @@
+{
+  "loop_id": "example_closed_loop",
+  "benchmark_id": "B4_adaptive_closed_loop",
+  "encoder_id": "hybrid_v26",
+  "readout_id": "online_centroid_v27",
+  "mode": "dry_run",
+  "max_steps": 8,
+  "target_confidence": 0.75,
+  "exploration_floor": 0.10,
+  "metadata": {
+    "note": "abstract controller config only; no live stimulation settings"
+  }
+}

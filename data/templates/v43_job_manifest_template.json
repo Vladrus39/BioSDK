@@ -1,0 +1,18 @@
+{
+  "job_type": "benchmark_run",
+  "dataset_id": "zenodo_14363732_preprocessed",
+  "manifest": {
+    "mode": "replay",
+    "split": "lineage_strict",
+    "decoder": "logistic_l2_v27",
+    "ablation": "response_delta_count",
+    "shuffle_controls": 50,
+    "bootstrap": false,
+    "result_bundle": true
+  },
+  "requested_result_bundle": true,
+  "metadata": {
+    "purpose": "developer_or_research_pilot_validation",
+    "safe_access_level": "software_only_no_live_actuation"
+  }
+}

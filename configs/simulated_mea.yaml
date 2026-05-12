@@ -1,0 +1,12 @@
+substrate:
+  type: simulated_mea
+  num_electrodes: 256
+  reservoir_units: 256
+  connectivity_density: 0.05
+  noise_level: 0.04
+  spontaneous_rate: 0.01
+  latency_mean: 2.0
+  latency_std: 0.5
+  burst_probability: 0.02
+  state_decay: 0.85
+  gain: 1.2

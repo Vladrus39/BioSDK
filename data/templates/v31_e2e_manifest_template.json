@@ -1,0 +1,11 @@
+{
+  "version": "v3.1",
+  "run_mode": "replay",
+  "encoder_id": "spatial_v26",
+  "decoder_id": "centroid_v27",
+  "task_id": "B0_target_vs_random_electrode:e2e_demo",
+  "payload": [0.0, 1.0, 2.0, 3.0, 2.0, 1.0],
+  "software_only": true,
+  "live_output_performed": false,
+  "claim_boundary": "E2E integration only; no live BioGPU or GPU advantage claim."
+}

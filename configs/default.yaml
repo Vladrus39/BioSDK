@@ -1,0 +1,24 @@
+seed: 42
+image_size: 16
+num_samples_per_class: 80
+noise_levels: [0.0, 0.1, 0.2, 0.3]
+train_fraction: 0.7
+encoder:
+  mode: spatial_rate
+  max_events_per_pixel: 3
+substrate:
+  type: simulated_mea
+  num_electrodes: 256
+  reservoir_units: 256
+  connectivity_density: 0.05
+  noise_level: 0.04
+  spontaneous_rate: 0.01
+  latency_mean: 2.0
+  latency_std: 0.5
+  burst_probability: 0.02
+  state_decay: 0.85
+  gain: 1.2
+features:
+  bins: 8
+outputs:
+  root: outputs

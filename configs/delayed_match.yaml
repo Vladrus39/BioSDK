@@ -1,0 +1,29 @@
+seed: 123
+image_size: 12
+num_samples_per_class: 24
+delay_frames: 2
+noise: 0.12
+train_fraction: 0.7
+reset_between_patterns: true
+encoder:
+  max_events_per_pixel: 2
+  use_orientation_banks: true
+substrate:
+  num_electrodes: 576
+  reservoir_units: 256
+  connectivity_density: 0.08
+  noise_level: 0.03
+  spontaneous_rate: 0.008
+  state_decay: 0.92
+  trace_decay: 0.985
+  recurrent_strength: 1.05
+  input_strength: 1.0
+  trace_strength: 0.65
+  gain: 1.25
+  burst_probability: 0.01
+outputs:
+  root: outputs
+
+features:
+  window_ms: 25.0
+  readout_bins: 1

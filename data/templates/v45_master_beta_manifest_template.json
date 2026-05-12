@@ -1,0 +1,11 @@
+{
+  "version": "4.5.0",
+  "run_mode": "replay_or_readonly",
+  "access_tier": "Research/Lab Evaluation",
+  "dataset_id": "zenodo_14363732_preprocessed",
+  "split_policy": "lineage_strict",
+  "decoder": "logistic_l2_v27",
+  "shuffle_controls": 100,
+  "bootstrap": false,
+  "blocked_live_actuation": true
+}

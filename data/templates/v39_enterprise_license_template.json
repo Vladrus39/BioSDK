@@ -1,0 +1,10 @@
+{
+  "customer": "example_enterprise_or_lab",
+  "tier_id": "enterprise_readonly",
+  "deployment_mode": "enterprise_read_only",
+  "allowed_actions": ["metadata_read", "trace_read", "result_bundle_export"],
+  "denied_actions": ["live_actuation", "experiment_control", "wetlab_operation"],
+  "support_level": "standard",
+  "claim_boundary": "read-only BioSDK integration; no live BioGPU or GPU replacement claim",
+  "required_artifacts": ["api_config", "permission_report", "audit_log", "result_bundle"]
+}

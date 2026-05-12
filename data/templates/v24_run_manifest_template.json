@@ -1,0 +1,19 @@
+{
+  "version": "v2.4",
+  "run_mode": "dry_run",
+  "hardware_profile": "software_only",
+  "benchmark_ids": [
+    "B0_target_vs_random_electrode",
+    "B1_spot_localization",
+    "B2_temporal_pattern_classification",
+    "B4_adaptive_closed_loop",
+    "B5_energy_latency_comparison"
+  ],
+  "operator_note": "edit this before a power-PC or lab run",
+  "expected_outputs": [
+    "run_manifest.json",
+    "audit_log.jsonl",
+    "session_summary.json",
+    "biogpu_v24_result_bundle.zip"
+  ]
+}

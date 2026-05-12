@@ -1,0 +1,31 @@
+seed: 515
+image_size: 12
+num_samples_per_class: 90
+sequence_length: 6
+noise: 0.12
+train_fraction: 0.7
+reset_between_patterns: true
+readout_window_ms: 30.0
+encoder:
+  max_events_per_pixel: 2
+  use_orientation_banks: true
+features:
+  window_ms: 30.0
+  readout_bins: 4
+substrate:
+  num_electrodes: 576
+  reservoir_units: 288
+  connectivity_density: 0.08
+  noise_level: 0.035
+  spontaneous_rate: 0.008
+  state_decay: 0.92
+  trace_decay: 0.985
+  gain: 1.45
+  recurrent_strength: 1.05
+  input_strength: 1.15
+  trace_strength: 0.55
+  burst_probability: 0.012
+energy:
+  host_watts: 15.0
+outputs:
+  root: outputs

@@ -1,0 +1,38 @@
+{
+  "version": "v8.0",
+  "generated_at": "2026-05-11T13:12:41.060758+00:00",
+  "production_ready": true,
+  "bic_os_unlocked": true,
+  "production_domains_ready": 11,
+  "production_domains_total": 12,
+  "open_domains": [
+    "external_beta_acceptance"
+  ],
+  "boot_phases_ready": 8,
+  "boot_phases_required": 6,
+  "subsystems_total": 23,
+  "subsystems_production_ready": 17,
+  "honest_gaps": [
+    "replay_pipeline_not_run_under_daemon",
+    "zero_live_data_in_dashboard",
+    "nsi_not_integrated_with_plugin_certification",
+    "no_real_external_api_validation",
+    "closed_loop_never_tested_on_hardware",
+    "zero_beta_participants"
+  ],
+  "claims_policy": {
+    "first_biological_computer": "NOT_CLAIMED",
+    "gpu_replacement": "NOT_CLAIMED",
+    "live_biogpu_proof": "NOT_CLAIMED",
+    "energy_superiority": "NOT_CLAIMED",
+    "global_uniqueness": "NOT_CLAIMED",
+    "live_actuation": "BLOCKED_BY_DEFAULT"
+  },
+  "next_actions": [
+    "wire_replay_pipeline_to_production_scheduler",
+    "validate_one_real_external_api_token",
+    "nsi_plugin_certification",
+    "end_to_end_evidence_bundle",
+    "onboard_first_beta_participant"
+  ]
+}

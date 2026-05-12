@@ -1,0 +1,12 @@
+{
+  "source_name": "BRC paper/data placeholder",
+  "source_url": "https://arxiv.org/abs/2602.05737",
+  "stimulus_table": "stimulus_windows.csv",
+  "spike_source": "spikes.txt or session.nwb",
+  "response_feature_matrix": "optional_precomputed_features.csv",
+  "label_column": "label",
+  "train_split_column": "split",
+  "stimulation_electrodes": [],
+  "recording_electrodes": [],
+  "notes": "Fill this template once author data/code format is available."
+}

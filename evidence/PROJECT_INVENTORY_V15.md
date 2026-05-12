@@ -1,0 +1,43 @@
+# PROJECT INVENTORY — v1.5 additions
+
+## New source files
+
+```text
+biogpu/analysis/zenodo_pulse_readout.py
+biogpu/benchmarks/zenodo_pulse_readout_analysis.py
+```
+
+## New tests
+
+```text
+tests/test_zenodo_pulse_readout.py
+```
+
+## New documentation
+
+```text
+docs/V15_PULSE_LEVEL_READOUT.md
+RUN_RESULTS_REALDATA_V15.md
+PROJECT_INVENTORY_V15.md
+```
+
+## New real-data outputs
+
+```text
+outputs/realdata_zenodo_14363732_v15_readout/PULSE_LEVEL_READOUT_REPORT.md
+outputs/realdata_zenodo_14363732_v15_readout/pulse_readout_summary.json
+outputs/realdata_zenodo_14363732_v15_readout/pulse_feature_matrix.npz
+outputs/realdata_zenodo_14363732_v15_readout/pulse_feature_metadata.csv
+outputs/realdata_zenodo_14363732_v15_readout/pulse_feature_columns.txt
+outputs/realdata_zenodo_14363732_v15_readout/target_id_readout_all_conditions.json
+outputs/realdata_zenodo_14363732_v15_readout/target_id_readout_all_conditions_folds.csv
+outputs/realdata_zenodo_14363732_v15_readout/target_id_readout_all_conditions_label_shuffle.csv
+outputs/realdata_zenodo_14363732_v15_readout/target_id_readout_lightstim_only.json
+outputs/realdata_zenodo_14363732_v15_readout/target_id_readout_lightstim_folds.csv
+outputs/realdata_zenodo_14363732_v15_readout/target_id_readout_lightstim_label_shuffle.csv
+outputs/realdata_zenodo_14363732_v15_readout/candidate_target_readout_summary.json
+outputs/realdata_zenodo_14363732_v15_readout/candidate_target_readout_features.npz
+outputs/realdata_zenodo_14363732_v15_readout/candidate_target_readout_metadata.csv
+outputs/realdata_zenodo_14363732_v15_readout/candidate_target_readout_folds.csv
+outputs/realdata_zenodo_14363732_v15_readout/candidate_target_readout_label_shuffle.csv
+```

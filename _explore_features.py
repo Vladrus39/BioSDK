@@ -1,0 +1,10 @@
+import numpy as np
+a = np.load('outputs/v86_nsi_mcs_adapter/features.npy', allow_pickle=False)
+print('Shape:', a.shape)
+print('Dtype:', a.dtype)
+print('Min:', a.min(), 'Max:', a.max(), 'Mean:', a.mean())
+print('First 3 rows, first 5 cols:')
+print(a[:3, :5])
+print('Last row, first 5 cols:')
+print(a[-1:, :5])
+print('NaN count:', np.isnan(a).sum())

@@ -1,0 +1,10 @@
+{
+  "task_id": "B2_temporal_pattern_classification",
+  "encoder_id": "temporal_v26",
+  "payload": {
+    "sequence": [0, 1, 0.5, -0.5, 1]
+  },
+  "metadata": {
+    "note": "No live stimulation parameters here. This is an abstract encoder input."
+  }
+}

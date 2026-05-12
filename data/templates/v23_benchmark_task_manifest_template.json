@@ -1,0 +1,43 @@
+{
+  "registry_version": "v2.3",
+  "task_id": "B3_orientation_like_encoding",
+  "run_id": "example_run_YYYYMMDD_HHMMSS",
+  "input_manifest": {
+    "dataset": "orientation_or_replay_dataset_name",
+    "samples": "path_or_count",
+    "encoder_version": "orientation_to_spatiotemporal_encoder:v1",
+    "seed": 12345,
+    "split_policy": "stratified_train_validation_test"
+  },
+  "substrate": {
+    "class": "simulated_then_live_mea_reservoir",
+    "mode": "dry_run",
+    "hardware_components": [
+      "runtime",
+      "mea_chip",
+      "headstage_stimulator",
+      "host_pc"
+    ],
+    "safety_class": "dry_run_only"
+  },
+  "readout": {
+    "name": "orientation_readout",
+    "model_family": "ridge_classifier",
+    "feature_contract": "reservoir state vector or time-pooled response vector"
+  },
+  "metrics_to_emit": [
+    "accuracy",
+    "confusion_matrix_stability",
+    "energy_proxy_per_sample"
+  ],
+  "controls_to_emit": [
+    "label_shuffle",
+    "random_time_window",
+    "shuffled_reservoir"
+  ],
+  "success_gates": [
+    "gate_b3_baselines",
+    "gate_b3_confusion"
+  ],
+  "claim_boundary": "No live BioGPU or energy advantage claim without matched accuracy and telemetry gates."
+}

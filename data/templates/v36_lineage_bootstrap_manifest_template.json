@@ -1,0 +1,16 @@
+{
+  "version": "v3.6",
+  "mode": "software_only_replay",
+  "split_strategy": "base_lineage_holdout_no_div_leakage",
+  "v15_dir": "outputs/realdata_zenodo_14363732_v15_readout",
+  "shuffle_count": 8,
+  "bootstrap_iterations": 500,
+  "decoders": ["centroid_euclidean", "diag_gaussian", "logistic_l2", "linear_svm"],
+  "ablations": ["response_delta_count", "exact_features"],
+  "safety_boundary": [
+    "no live stimulation settings",
+    "no wet-lab protocol",
+    "no vendor wiring or pinout",
+    "no GPU advantage claim"
+  ]
+}

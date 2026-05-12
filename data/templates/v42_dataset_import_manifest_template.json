@@ -1,0 +1,26 @@
+{
+  "version": "v4.2",
+  "mode": "read_only_replay",
+  "dataset_id": "zenodo_14363732_preprocessed",
+  "importer_id": "zenodo_preprocessed_v42",
+  "source_uri": "registry://zenodo_14363732_preprocessed",
+  "local_cache_dir": "data/cache/zenodo_14363732",
+  "options": {
+    "schema_check": true,
+    "lineage_strict": true,
+    "generate_preview_report": true,
+    "read_only_token_expected": false
+  },
+  "blocked_fields": [
+    "voltage",
+    "amplitude",
+    "current",
+    "pulse_width",
+    "frequency",
+    "pinout",
+    "wiring",
+    "live_stimulation",
+    "media_recipe",
+    "environment_control"
+  ]
+}

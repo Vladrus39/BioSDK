@@ -1,0 +1,14 @@
+public_sources:
+  zenodo_14363732:
+    type: MEA2100 spike/raw public dataset
+    url: https://zenodo.org/records/14363732
+    role: real spike ingestion and profiling
+    caveat: task labels/stimulus windows must be mapped before classification claims
+  dandi_000469:
+    type: NWB human single-neuron Sternberg working-memory dataset
+    url: https://dandiarchive.org/dandiset/000469
+    role: task-aligned NWB stimulus/spike mapping candidate
+  brc_2602_05737:
+    type: biological reservoir computing HD-MEA paper
+    url: https://arxiv.org/abs/2602.05737
+    role: closest external architecture target

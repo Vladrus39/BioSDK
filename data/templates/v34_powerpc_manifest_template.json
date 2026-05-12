@@ -1,0 +1,7 @@
+{
+  "version": "v3.4",
+  "mode": "power_pc_replay",
+  "first_command": "bash scripts/run_biogpu_v34_powerpc_smoke.sh",
+  "paper_grade_command": "bash scripts/run_biogpu_v34_powerpc_full.sh",
+  "boundary": "Replay-only; no live MEA and no GPU advantage claim."
+}

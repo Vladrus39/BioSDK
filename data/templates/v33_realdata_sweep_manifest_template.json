@@ -1,0 +1,21 @@
+{
+  "version": "v3.3",
+  "run_mode": "replay",
+  "benchmark_id": "B1_spot_localization:paper_grade_realdata_sweep",
+  "v15_dir": "outputs/realdata_zenodo_14363732_v15_readout",
+  "out_dir": "outputs/realdata_zenodo_14363732_v33_paper_sweep",
+  "split_offsets": [0, 1, 2, 3, 4, 5],
+  "culture_stride": 3,
+  "heldout_culture_count": 5,
+  "decoders": ["centroid_euclidean", "centroid_cosine", "diag_gaussian"],
+  "ablations": ["all_features", "response_delta_count", "response_count", "pre_response_count", "exact_features"],
+  "shuffle_count_compact": 12,
+  "shuffle_count_power_pc_target": 1000,
+  "safety_boundary": [
+    "offline public-data replay only",
+    "no live stimulation settings emitted",
+    "no wet-lab protocol",
+    "no vendor pinout or wiring procedure",
+    "no GPU advantage claim"
+  ]
+}

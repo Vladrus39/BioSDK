@@ -1,0 +1,21 @@
+{
+  "version": "v2.9",
+  "mode": "replay_or_live_lab",
+  "task_count": 1000,
+  "run_duration_s": 60.0,
+  "power_components": [
+    {"name": "host_controller_pc", "watts": 65.0, "role": "runtime/encoder/readout", "measurement_status": "placeholder"},
+    {"name": "mea_electronics", "watts": 25.0, "role": "MEA acquisition/stimulation", "measurement_status": "placeholder"},
+    {"name": "environment_share", "watts": 15.0, "role": "incubator or stage-top share", "measurement_status": "placeholder"}
+  ],
+  "latency_components_ms": {
+    "encode_ms": 1.0,
+    "substrate_io_ms": 2.0,
+    "biological_response_ms": 50.0,
+    "acquisition_ms": 5.0,
+    "feature_extraction_ms": 2.0,
+    "readout_ms": 0.5,
+    "controller_update_ms": 0.5
+  },
+  "claim_boundary": "Replace placeholders with measured telemetry before making any efficiency claim."
+}

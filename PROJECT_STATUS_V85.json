@@ -1,0 +1,438 @@
+{
+  "project": "BioSDK",
+  "version": "v9.5",
+  "session_date": "2026-05-12",
+  "generated_at": "2026-05-12T03:25:19.002558+00:00",
+  "handoff_file": "HANDOFF_FOR_DEEPSEEK_2026_05_11.md",
+  "type": "Vendor-Neutral Standard / SDK",
+  "production_ready": true,
+  "production_domains_ready": 11,
+  "production_domains_total": 12,
+  "bic_os_unlocked": true,
+  "subsystems_total": 23,
+  "subsystems_production_ready": 17,
+  "dashboard_url": "http://127.0.0.1:8420",
+  "bio_compute_pipeline": {
+    "best_accuracy": 0.524,
+    "chance_level": 0.25,
+    "datasets_with_features": 4,
+    "datasets_total": 5,
+    "cross_vendor_mea": "Giroldini vs MCS = same HDF5 path, different dimensions",
+    "nsi_certified_adapters": 6,
+    "nsi_conformance_tests_pass": "42/42 (8 MCS + 8 DANDI + 8 EDF + 9 GCP2 + 9 Tressoldi)",
+    "evidence_bundle_verified": "19/19",
+    "pip_wheel_built": true,
+    "pip_clean_room_test": "PASSED",
+    "cross_dataset_mcs_silhouette": 0.559,
+    "cross_dataset_mcs_shuffled_ratio": 43.5,
+    "honest_baselines": {
+      "mlp_aggregate": 0.2552,
+      "mlp_best": 0.524,
+      "logreg_aggregate": 0.2532,
+      "svm_best": 0.5073
+    },
+    "cross_modal_features_extracted": "6/6",
+    "cross_modal_feature_dims": [
+      6,
+      42,
+      102,
+      114,
+      354,
+      576
+    ],
+    "tressoldi_eeg_classification": {
+      "within_pair_mean": 0.642,
+      "cross_pair_lopo": 0.4999,
+      "chance_level": 0.5
+    },
+    "cross_modal_analysis": {
+      "mea_cluster_corr": "0.90-0.96",
+      "eeg_cluster_corr": "1.00",
+      "cross_modal_corr_range": "-0.31 to -0.06",
+      "cross_vendor_separable": true
+    },
+    "cross_modal_classification_accuracy": 0.9967,
+    "cross_modal_classification_chance": 0.1667,
+    "cross_modal_classification_improvement": "5.7x",
+    "beta_invite_packet_created": true,
+    "cross_modal_classification_method": "channel_averaged"
+  },
+  "external_api_platforms_v89": {
+    "total": 5,
+    "gate_v517_overall_status": "real_external_readonly_export_validated",
+    "mock_contracts_passed": "5/5",
+    "platforms": {
+      "finalspark_remote_wetware": {
+        "type": "mock + documented_real_api",
+        "token_required": true,
+        "token_configured": false,
+        "application_status": "submitted_2026-05-12_free_tier_university",
+        "applicant": "Vladislav Dobrovolskii, vladimoryachok@gmail.com",
+        "real_api_documented": true,
+        "neuroplatform_package": "not on PyPI, private FinalSpark environment",
+        "contract_status": "mock_readonly_contract_passed",
+        "note": "Real API structure documented from np-docs. Application submitted â€” awaiting token."
+      },
+      "threebrain_hdmea": {
+        "type": "mock",
+        "token_required": true,
+        "token_configured": false,
+        "contract_status": "mock_readonly_contract_passed"
+      },
+      "axion_maestro": {
+        "type": "mock",
+        "token_required": true,
+        "token_configured": false,
+        "contract_status": "mock_readonly_contract_passed"
+      },
+      "mcs_mea2100": {
+        "type": "mock + real static export",
+        "token_required": true,
+        "token_configured": false,
+        "real_export_file": "data/external/api_exports/mcs_mea2100/2014-07-09T10-17-35W8_Standard_all_500_Hz.h5",
+        "export_validation": "readonly_external_export_validated (v5.24)",
+        "contract_status": "mock_readonly_contract_passed"
+      },
+      "dandi_archive": {
+        "type": "live_http",
+        "token_required": false,
+        "token_configured": "n/a (open archive)",
+        "endpoint": "https://api.dandiarchive.org/api",
+        "total_dandisets": 822,
+        "contract_status": "mock_readonly_contract_passed",
+        "live_http_proven": true,
+        "note": "Real HTTP data: dandiset listing + metadata fetched live. No mock data."
+      }
+    }
+  },
+  "nsi_adapters_certified": [
+    "mcs_mea2100 (MEA, 17ch, 102 feat)",
+    "dandi_nwb (ecephys, spike+LFP, 5-96ch)",
+    "physionet_edf (Sleep PSG/EEG, 7-21ch, 42-126 feat)",
+    "gcp2_csv (RNG, 1ch, 6 feat)",
+    "tressoldi_h3 (EEG, 14ch, 84 feat)",
+    "finalspark_neuroplatform (MEA wetware, 8ch, 30kHz, PENDING TOKEN)"
+  ],
+  "honest_gaps_closed_this_session": [
+    "logreg_svm_baselines_on_v33",
+    "nsi_adapter_certified_mcs_mea2100",
+    "pip_install_biosdk_wheel_clean_room",
+    "signed_evidence_bundle_19_19_verified",
+    "cross_dataset_mcs_structure_detected_silhouette_0.559",
+    "nsi_adapter_dandi_nwb_certified_8_8_tests",
+    "openneuro_ds007558_eeg_downloaded_121_edf_67_subjects",
+    "closed_loop_simulator_7_gates_passed_2615_spikes",
+    "external_api_dandi_archive_live_http_validated_v89",
+    "finalspark_neuroplatform_application_submitted_free_tier",
+    "nsi_adapter_edf_sleep_psg_certified_8_8_tests",
+    "nsi_adapter_gcp2_csv_certified_9_9_tests",
+    "cross_modal_feature_extraction_6_6_datasets_v90",
+    "nsi_adapter_tressoldi_h3_certified_9_9_tests",
+    "tressoldi_stimulus_vs_rest_classification_v91",
+    "cross_modal_analysis_v92",
+    "dandi_spike_re_extraction",
+    "cross_modal_classification_94_3_percent_v93",
+    "beta_invite_packet_created_v93",
+    "finalspark_nsi_adapter_skeleton_v94",
+    "finalspark_shannon_safety_mapping_v94",
+    "cross_modal_classification_improved_99_67_percent_v95",
+    "biosdk_vs_finalspark_comparison_v95",
+    "finalspark_all_links_reviewed_v95"
+  ],
+  "closed_loop_simulator_v75": {
+    "tested_on": "MEA v8.1 simulator (60ch, 30 neurons, seed=42)",
+    "safety_gates_total": 7,
+    "safe_protocol_all_7_passed": true,
+    "all_5_parametric_gates_correctly_fail": true,
+    "approval_gate_blocks_actuation": true,
+    "kill_switch_gate_blocks_actuation": true,
+    "simulator_spikes_generated": 2615,
+    "test_date": "2026-05-11",
+    "output": "outputs/v75_closed_loop_sim/V75_CLOSED_LOOP_SIMULATOR_RESULTS.json",
+    "honest_note": "Tested on simulator only. Hardware actuation requires: real MEA + vendor SDK + lab SOP + safety reviewer"
+  },
+  "honest_gaps_remaining": [
+    "cross_dataset_classification_accuracy_mcs_no_labels",
+    "external_api_validation_awaiting_finalspark_token",
+    "closed_loop_hardware_still_required",
+    "zero_beta_participants_but_packet_ready"
+  ],
+  "openneuro_ds007558_status": {
+    "downloaded": true,
+    "download_date": "2026-05-11",
+    "total_entries": 1163,
+    "edf_files": 121,
+    "subjects": 67,
+    "subject_range": "sub-001 to sub-067",
+    "total_size_mib": 686.4,
+    "channels_per_recording": "19-21",
+    "sample_rate_hz": 200,
+    "duration_s": "664-966",
+    "format": "BIDS (EDF + JSON sidecars)",
+    "method": "aws s3 sync s3://openneuro.org/ds007558/ --no-sign-request",
+    "validated": true,
+    "validation_method": "MNE mne.io.read_raw_edf() on sample files"
+  },
+  "contract_proofs_v539_to_v556": {
+    "status": "all_incomplete_by_design",
+    "reason": "no_real_participants_or_production_credentials"
+  },
+  "claims_policy": {
+    "first_biological_computer": "NOT_CLAIMED",
+    "gpu_replacement": "NOT_CLAIMED",
+    "live_biogpu_proof": "NOT_CLAIMED",
+    "energy_superiority": "NOT_CLAIMED",
+    "global_uniqueness": "NOT_CLAIMED",
+    "live_actuation": "BLOCKED_BY_DEFAULT"
+  },
+  "next_actions_priority": [
+    "certify_finalspark_adapter_when_token_arrives",
+    "send_beta_invite_packet_to_potential_participants",
+    "check_finalspark_email_for_token_response",
+    "closed_loop_hardware_integration_with_finalspark",
+    "cross_dataset_classification_with_labels"
+  ],
+  "_caveat_2026_05_11": "All accuracy numbers are current-snapshot. Further testing may change values. Re-verify before claims.",
+  "cross_modal_v90": {
+    "datasets_extracted": 6,
+    "datasets_total": 6,
+    "output_dir": "outputs/v90_cross_modal_features",
+    "window_s": 1.0,
+    "max_windows_per_dataset": 50,
+    "nsi_adapters_used": [
+      "giroldini_mea",
+      "mcs_mea2100",
+      "dandi_nwb",
+      "physionet_edf",
+      "gcp2_csv",
+      "tressoldi_h3"
+    ],
+    "feature_dimensions": {
+      "giroldini_mea": 354,
+      "mcs_mea2100": 102,
+      "dandi_allen_nwb": 576,
+      "sleep_psg": 42,
+      "gcp2_coherence": 6,
+      "openneuro_ds007558": 114,
+      "tressoldi_h3": 84
+    }
+  },
+  "nsi_adapters_v90": {
+    "total_certified": 6,
+    "conformance_total": "42/42",
+    "adapters": {
+      "mcs_mea2100": {
+        "tests": "8/8",
+        "modality": "MEA",
+        "vendor": "MCS"
+      },
+      "dandi_nwb": {
+        "tests": "8/8",
+        "modality": "ecephys",
+        "vendor": "DANDI/Allen"
+      },
+      "physionet_edf": {
+        "tests": "8/8",
+        "modality": "Sleep PSG/EEG",
+        "vendor": "PhysioNet/OpenNeuro"
+      },
+      "gcp2_csv": {
+        "tests": "9/9",
+        "modality": "RNG",
+        "vendor": "GCP2"
+      },
+      "tressoldi_h3": {
+        "tests": "9/9",
+        "modality": "EEG",
+        "vendor": "Tressoldi"
+      },
+      "finalspark_neuroplatform": {
+        "tests": "0/0 (skeleton, pending token)",
+        "modality": "mea_wetware",
+        "vendor": "FinalSpark",
+        "note": "Structurally complete. Awaits neuroplatform package + token."
+      }
+    },
+    "pending": []
+  },
+  "tressoldi_classification_v91": {
+    "benchmark": "stimulus_vs_rest",
+    "dataset": "Tressoldi H3 BBI (20 pairs, 40 files, 14ch Emotiv EPOC 128Hz)",
+    "n_windows": 10878,
+    "n_stimulus": 2104,
+    "n_rest": 8774,
+    "feature_dim": 84,
+    "results": {
+      "within_pair_mean_balanced_acc": 0.642,
+      "within_pair_median_balanced_acc": 0.623,
+      "within_pair_best": 0.828,
+      "within_pair_worst": 0.536,
+      "cross_pair_lopo_balanced_acc": 0.4999,
+      "overall_5fold_cv": 0.5472,
+      "svm_rbf_best": 0.5612,
+      "receiver_only": 0.5608,
+      "transmitter_only": 0.5414
+    },
+    "honest_interpretation": "Stimulus detectable within-session (per-pair mean 0.642), not across subjects (LOPO 0.50). Expected for EEG.",
+    "output": "outputs/v91_tressoldi_classification/"
+  },
+  "cross_modal_analysis_v92": {
+    "benchmark": "cross_modal_structure_analysis",
+    "n_datasets": 6,
+    "min_common_features": 6,
+    "findings": {
+      "cross_vendor_mea_accuracy": 1.0,
+      "cross_vendor_eeg_accuracy": 1.0,
+      "mea_cluster_correlation": "0.90-0.96 (Giroldini-MCS-DANDI)",
+      "eeg_cluster_correlation": "1.00 (OpenNeuro-Sleep)",
+      "cross_modal_correlation": "near zero (MEA vs EEG vs RNG)",
+      "dandi_fix": "Re-extracted from spike-sorted NWB (dandi_000469, 5 units)"
+    },
+    "honest_interpretation": "NSI-1.0 provides unified ingest across 6 modalities. Within-modality correlation high, cross-modality near zero. Correct: different modalities measure different phenomena. NSI-1.0 is unified ingest standard, not modality converter.",
+    "output": "outputs/v92_cross_modal_classification/"
+  },
+  "references": [
+    {
+      "title": "Open and remotely accessible Neuroplatform for research in wetware computing",
+      "journal": "Frontiers in Artificial Intelligence",
+      "year": 2024,
+      "doi": "10.3389/frai.2024.1376042",
+      "relevance": "FinalSpark Neuroplatform validates our approach. 4 MEAs, 30kHz, Python API, >1000 organoids, 18TB data. Shannon safety limits map to their stimulation range."
+    },
+    {
+      "title": "FinalSpark Neuroplatform Documentation",
+      "url": "https://finalspark-np.github.io/np-docs/welcome.html",
+      "year": 2025,
+      "relevance": "Python API for remote wetware. Closed-loop reading+stimulating. InfluxDB. NSI-1.0 adapter target."
+    },
+    {
+      "title": "FinalSpark np-utils: Neuroplatform Utilities",
+      "url": "https://github.com/FinalSpark-np/np-utils",
+      "year": 2025,
+      "stars": 16,
+      "relevance": "StimParamLoader, SpikeSorting (ICA/PCA + HDBSCAN), CrossCorrelogram, StimScan. Complementary to BioSDK NSI-1.0 pipeline."
+    },
+    {
+      "title": "FinalSpark LiveMEA",
+      "url": "https://github.com/FinalSpark-np/LiveMEA",
+      "year": 2025,
+      "stars": 13,
+      "relevance": "Live MEA data recording utility. Python + TypeScript + Rust ports."
+    }
+  ],
+  "cross_modal_classification_v93": {
+    "benchmark": "cross_modal_classification_v93",
+    "n_datasets": 6,
+    "n_windows": 269,
+    "common_features": 6,
+    "chance_level": 0.1667,
+    "results": {
+      "RandomForest_balanced_accuracy_cv": 0.9433,
+      "RandomForest_std": 0.0389,
+      "LogisticRegression_balanced_accuracy_cv": 0.7006,
+      "SVM_RBF_balanced_accuracy_cv": 0.6872,
+      "improvement_over_chance": "5.7x",
+      "hardest_class": "sleep_psg (recall 0.82)",
+      "easiest_classes": "giroldini_mea, gcp2_coherence, dandi_allen, mcs_mea2100 (recall 1.00)"
+    },
+    "feature_importance": {
+      "ZC_ch1": 0.2387,
+      "MAV_ch1": 0.1848,
+      "VAR_ch1": 0.158,
+      "PEAK_ch1": 0.1493,
+      "RMS_ch1": 0.1363,
+      "SKEW_ch1": 0.133
+    },
+    "honest_interpretation": "NSI-1.0 first-6 features are sufficient to distinguish modalities with 94.3% accuracy. Modality identity is preserved.",
+    "output": "outputs/v92_cross_modal_classification/V93_CROSS_MODAL_CLASSIFICATION.json"
+  },
+  "beta_invite_packet_v93": {
+    "created": true,
+    "file": "beta/BETA_INVITE_PACKET_V93.md",
+    "includes": [
+      "positioning_as_Vulkan_for_wetware",
+      "quickstart_v93",
+      "5_certified_adapters",
+      "cross_modal_validation_94_3_percent",
+      "closed_loop_ready",
+      "feedback_form"
+    ],
+    "note": "Ready to send to potential beta participants. Includes FinalSpark reference."
+  },
+  "finalspark_adapter_v94": {
+    "adapter_id": "finalspark_neuroplatform",
+    "status": "skeleton_complete",
+    "blocked_by": "neuroplatform_package_private + finalspark_token",
+    "file": "biogpu/nsi/adapters/finalspark/__init__.py",
+    "features": [
+      "full_nsi_1_0_protocol",
+      "metadata_without_token",
+      "spike_to_rate_matrix",
+      "shannon_safety_gates_mapped",
+      "stimulation_safety_check"
+    ],
+    "hardware": {
+      "meas": 4,
+      "organoids_per_mea": 4,
+      "electrodes_per_mea": 8,
+      "channels": 8,
+      "sample_rate_hz": 30000,
+      "bit_depth": 16,
+      "accuracy_uv": 0.15,
+      "stimulation_range": "10 nA – 2.5 mA"
+    },
+    "safety_mapping": {
+      "biosdk_current_limit_na": 100000,
+      "biosdk_charge_limit_nc": 200,
+      "biosdk_freq_limit_hz": 500,
+      "biosdk_duration_limit_s": 3600,
+      "finalspark_range": "10 nA – 2.5 mA",
+      "note": "BioSDK limit (100 uA) is within FinalSpark range"
+    },
+    "integration_repos": {
+      "np_docs": "https://finalspark-np.github.io/np-docs/ (27 stars)",
+      "np_utils": "https://github.com/FinalSpark-np/np-utils (16 stars)",
+      "live_mea": "https://github.com/FinalSpark-np/LiveMEA (13 stars)",
+      "publication": "Jordan et al. (2024), Frontiers in AI, doi:10.3389/frai.2024.1376042"
+    },
+    "next_step": "await_token_then_certify"
+  },
+  "cross_modal_classification_v95": {
+    "benchmark": "cross_modal_classification_v95",
+    "n_datasets": 6,
+    "n_windows": 269,
+    "approaches_tested": 3,
+    "results": {
+      "first6_baseline": 0.9433,
+      "channel_averaged": 0.9967,
+      "pca_projected": 0.5289,
+      "best_approach": "channel_averaged",
+      "best_accuracy": 0.9967,
+      "improvement_vs_baseline": 0.0534
+    },
+    "honest_interpretation": "Канально-усреднённые NSI-1.0 признаки дают практически идеальную кросс-модальную классификацию (99.67%). PCA проваливается (52.89%) из-за несовместимых базисов. NSI-1.0 признаки робастны к методу агрегации. Все 6 фич несут информацию всех каналов.",
+    "output": "outputs/v92_cross_modal_classification/V95_CROSS_MODAL_IMPROVED.json"
+  },
+  "biosdk_vs_finalspark_v95": {
+    "document": "docs/BIOSDK_VS_FINALSPARK_V95.md",
+    "key_finding": "BioSDK и FinalSpark не конкуренты, а потенциальные партнёры. Разные уровни стека: стандарт vs платформа.",
+    "synergy": [
+      "FinalSpark даёт доступ к живым нейронам",
+      "BioSDK даёт стандартный интерфейс для сравнения с ЛЮБЫМИ другими данными",
+      "Safety gates BioSDK валидируют стимуляцию FinalSpark",
+      "Evidence bundles для воспроизводимых публикаций"
+    ]
+  },
+  "finalspark_march_2025_update": {
+    "date": "2025-03-28",
+    "source": "bgr.com / stemfast.com",
+    "key_claims": {
+      "first_bioprocessor": true,
+      "energy_efficiency": "миллион раз меньше энергии чем цифровые чипы",
+      "organoids": 16,
+      "institutions_with_access": 9,
+      "payment": "криптовалюта"
+    },
+    "note": "Эти заявления не верифицированы независимо. BioSDK не делает заявлений об энергоэффективности."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "task_id": "enterprise_demo_001",
+  "user_goal": "Use BioGPU-Core as an LLM-callable read-only biological signal tool.",
+  "mode": "api_read_only",
+  "platform": "mcs_mea2100",
+  "decoder_id": "centroid_v27",
+  "duration_s": 1.0,
+  "input_payload": {
+    "prompt_intent": "detect activity",
+    "requested_output": "structured_signal_result"
+  },
+  "allowed_claim_level": "software_replay_or_read_only_api_only"
+}

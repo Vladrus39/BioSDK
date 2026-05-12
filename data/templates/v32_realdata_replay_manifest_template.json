@@ -1,0 +1,14 @@
+{
+  "version": "v3.2",
+  "run_mode": "replay",
+  "benchmark_ids": ["B1_spot_localization", "B5_energy_latency_comparison"],
+  "dataset": "outputs/realdata_zenodo_14363732_v15_readout/pulse_feature_matrix.npz",
+  "split_strategy": "fixed_stride_culture_holdout",
+  "culture_stride": 3,
+  "heldout_culture_count": 5,
+  "decoder_id": "centroid_v27_vectorized",
+  "shuffle_count": 20,
+  "safety_class": "offline_replay_only",
+  "live_output_performed": false,
+  "gpu_advantage_claimed": false
+}

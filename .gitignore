@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+*.whl
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+.env
+*.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets & tokens
+.pypirc
+*.token
+credentials.json
+
+# Data (large files)
+data/external/
+data/production/
+*.h5
+*.nwb
+*.edf
+*.csv
+!data/samples/
+!data/templates/
+
+# Outputs (generated)
+outputs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# MyPy
+.mypy_cache/
+
+# Session files
+.deepseek/
+.SESSION_ACTIVE_PROJECT.md
+.SESSION_LOG.md
+SESSION_START_PROMPT.md
+
+# Keep these
+!README.md
+!LICENSE
+!COMMERCIAL_LICENSE.md
+!pyproject.toml
+!requirements.txt
+!Dockerfile
+!docker-compose.yml

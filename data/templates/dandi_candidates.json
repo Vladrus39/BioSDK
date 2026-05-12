@@ -1,0 +1,24 @@
+{
+  "candidates": [
+    {
+      "dandiset_id": "000469",
+      "name": "Human single-neuron activity during a Sternberg working memory task",
+      "modality": "extracellular single-unit/ecephys NWB",
+      "has_units": true,
+      "has_stimulus_or_behavior": true,
+      "why_relevant": "Contains spike times, stimuli, behavior, and working-memory task structure; useful for task-aligned window mapping, not MEA reservoir claims.",
+      "download_hint": "dandi download https://dandiarchive.org/dandiset/000469",
+      "trust_level": "strong public NWB task dataset"
+    },
+    {
+      "dandiset_id": "000673",
+      "name": "Human hippocampal working-memory intracranial dataset referenced by ripple-working-memory resources",
+      "modality": "intracranial ecephys/LFP/single-unit NWB candidate",
+      "has_units": true,
+      "has_stimulus_or_behavior": true,
+      "why_relevant": "Potential temporal-memory benchmark source if NWB interval/task metadata can be mapped.",
+      "download_hint": "dandi download https://dandiarchive.org/dandiset/000673",
+      "trust_level": "candidate pending local inspection"
+    }
+  ]
+}

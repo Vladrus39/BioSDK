@@ -1,0 +1,15 @@
+# BioGPU-Core v6.7 Pre-commit Hooks
+repos:
+  - repo: local
+    hooks:
+      - id: pytest-current
+        name: Run current tests
+        entry: powershell -ExecutionPolicy Bypass -File scripts/run_biogpu_v60_production_foundation.ps1
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: claim-audit
+        name: Claim boundary audit
+        entry: python -m biogpu.benchmarks.biogpu_v510_project_alignment_claim_audit
+        language: system
+        pass_filenames: false

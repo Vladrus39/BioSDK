@@ -1,0 +1,57 @@
+{
+  "version": "v6.7",
+  "gates": [
+    {
+      "id": "test-current",
+      "command": "pytest tests/current/ -q",
+      "required": true,
+      "description": "All current tests pass"
+    },
+    {
+      "id": "smoke-check",
+      "command": "python -c \"from biogpu.production import *\"",
+      "required": true,
+      "description": "Production package imports"
+    },
+    {
+      "id": "import-check",
+      "command": "python -c \"import biogpu\"",
+      "required": true,
+      "description": "Core package imports"
+    },
+    {
+      "id": "bootstrap-check",
+      "command": "python -m biogpu.production.bootstrap_v60",
+      "required": true,
+      "description": "Production bootstrap succeeds"
+    },
+    {
+      "id": "signing-verify",
+      "command": "python -m biogpu.sdk.signing_v66",
+      "required": true,
+      "description": "Signing key available"
+    },
+    {
+      "id": "claim-audit",
+      "command": "python -m biogpu.benchmarks.biogpu_v510_project_alignment_claim_audit",
+      "required": true,
+      "description": "Claim boundaries enforced"
+    },
+    {
+      "id": "lint-check",
+      "command": "python -m flake8 biogpu/ --count --select=E9,F63,F7,F82 --show-source --statistics",
+      "required": false,
+      "description": "Flake8 critical errors"
+    }
+  ],
+  "pipeline_order": [
+    "test-current",
+    "smoke-check",
+    "import-check",
+    "bootstrap-check",
+    "signing-verify",
+    "claim-audit"
+  ],
+  "ci_provider": "local-windows",
+  "created_at": "2026-05-11T12:36:12.726033Z"
+}

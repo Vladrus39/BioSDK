@@ -1,0 +1,28 @@
+{
+  "asset_id": "zenodo_14363732_preprocessed_sample",
+  "display_name": "Zenodo 14363732 Pre_processed_MEA_data.zip",
+  "version": "v4.6-asset-registration",
+  "file_name": "zenodo_14363732_preprocessed_sample.zip",
+  "local_expected_path": "data/samples/zenodo_14363732_preprocessed_sample.zip",
+  "include_full_archive_in_sdk": true,
+  "reason_not_embedded": "Full experimental datasets are external assets. SDK release contains checksum, registry, importer, and small sample subset only.",
+  "size_bytes": 43151,
+  "md5": "5887d54b8db7166cb0078ebb37d91756",
+  "sha256": "9eb617bc6c17b333b1c88a5fa1d75913c1c7d2dac8bc6d6d834bb2e2bea43f3f",
+  "zip_entries": 12,
+  "electrode_csv_count": 10,
+  "metadata_csv_count": 2,
+  "recording_count": 2,
+  "culture_label_count": 1,
+  "base_lineage_count": 1,
+  "sample_subset_path": "data/samples/zenodo_14363732_preprocessed_sample.zip",
+  "status": "baseline_data_asset_required_for_reproducing_v1_5_to_v3_6_realdata_results",
+  "power_pc_stage": "stage_0_smoke_and_stage_1_full_shuffle_input",
+  "created_utc": "2026-05-06T05:04:23.389903+00:00",
+  "source_full_asset_sha256": "502afab79d3a843dc16a65d02432ed1d3bcb77bd38179952e74399b420c122f6",
+  "sample_members_count": 12,
+  "sample_recordings": [
+    "EXP PTSD/11-11-2022/39566_21DIV/39566_21DIV_D-00144",
+    "EXP PTSD/11-11-2022/39566_21DIV/39566_21DIV_LightStim_Spot34_D-00144"
+  ]
+}

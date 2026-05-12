@@ -1,0 +1,22 @@
+{
+  "asset_id": "zenodo_14363732_preprocessed_mea",
+  "display_name": "Zenodo 14363732 Pre_processed_MEA_data.zip",
+  "version": "v4.6-asset-registration",
+  "file_name": "Pre_processed_MEA_data.zip",
+  "local_expected_path": "data/external/Pre_processed_MEA_data.zip",
+  "include_full_archive_in_sdk": false,
+  "reason_not_embedded": "Full experimental datasets are external assets. SDK release contains checksum, registry, importer, and small sample subset only.",
+  "size_bytes": 12103495,
+  "md5": "56e4be13c4573252f055b6a1f775f9da",
+  "sha256": "502afab79d3a843dc16a65d02432ed1d3bcb77bd38179952e74399b420c122f6",
+  "zip_entries": 3581,
+  "electrode_csv_count": 3481,
+  "metadata_csv_count": 59,
+  "recording_count": 59,
+  "culture_label_count": 18,
+  "base_lineage_count": 10,
+  "sample_subset_path": "data/samples/zenodo_14363732_preprocessed_sample.zip",
+  "status": "baseline_data_asset_required_for_reproducing_v1_5_to_v3_6_realdata_results",
+  "power_pc_stage": "stage_0_smoke_and_stage_1_full_shuffle_input",
+  "created_utc": "2026-05-06T05:04:23.389903+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "dataset_id": "zenodo_14363732_raw_hdf5",
+  "source_record_url": "https://zenodo.org/records/14363732",
+  "official_download_url": "FILL_FROM_OFFICIAL_ZENODO_FILE_URL",
+  "expected_filename": "Raw_data_MEA_data.zip",
+  "expected_size_bytes": "FILL_IF_KNOWN",
+  "expected_sha256": "FILL_IF_AVAILABLE",
+  "license_or_terms": "FILL_FROM_SOURCE",
+  "download_notes": "Use resume-capable download. Verify size/checksum before extraction.",
+  "post_download_steps": [
+    "inspect zip listing",
+    "extract to data/external/raw_hdf5/extracted",
+    "inspect HDF5 keys/channels/TTL/stimulus markers",
+    "write raw-derived pulse windows"
+  ]
+}

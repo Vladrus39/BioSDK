@@ -1,0 +1,27 @@
+{
+  "version": "v2.5",
+  "mode": "dry_run",
+  "selected_adapter": "mcs_mea2100_class",
+  "device_label": "lab_device_alias_not_serial_number",
+  "allowed_command_class": "abstract_pattern_only",
+  "forbidden_fields": [
+    "amplitude",
+    "voltage",
+    "current",
+    "pulse_width",
+    "frequency",
+    "waveform",
+    "pinout",
+    "wiring",
+    "culture_recipe",
+    "media_recipe"
+  ],
+  "requires_for_live_backend": [
+    "vendor SDK/manuals",
+    "approved lab SOP",
+    "validated safety gates",
+    "qualified operator",
+    "hardware interlock",
+    "audit logging"
+  ]
+}

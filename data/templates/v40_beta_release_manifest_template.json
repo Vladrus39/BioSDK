@@ -1,0 +1,30 @@
+{
+  "version": "4.0.0",
+  "release_mode": "private_beta_architecture",
+  "delivery_channel": "hosted_biogpu_server | private_github_sdk | enterprise_onprem_docker",
+  "allowed_run_modes": [
+    "mock",
+    "replay",
+    "read_only_import",
+    "metadata",
+    "live_shadow"
+  ],
+  "blocked_modes": [
+    "unapproved_live_stimulation",
+    "free_form_electrode_commands",
+    "wet_lab_protocols"
+  ],
+  "dataset_expansion_targets": [
+    "zenodo_14363732_raw_hdf5",
+    "dandi_nwb_discovery_pack",
+    "allen_brain_observatory_visual_coding",
+    "finalspark_read_only_live_hdf5"
+  ],
+  "validation_gates": [
+    "G1_release_install",
+    "G2_dataset_replay",
+    "G3_lineage_statistics",
+    "G4_api_read_only",
+    "G5_powerpc_full_validation"
+  ]
+}

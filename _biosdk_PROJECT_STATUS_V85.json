@@ -1,0 +1,57 @@
+{
+  "project": "BioSDK",
+  "version": "v8.5",
+  "session_date": "2026-05-11",
+  "generated_at": "2026-05-11T14:58:19.977066+00:00",
+  "handoff_file": "HANDOFF_FOR_DEEPSEEK_2026_05_11.md",
+  "type": "Vendor-Neutral Standard / SDK",
+  "production_ready": true,
+  "production_domains_ready": 11,
+  "production_domains_total": 12,
+  "bic_os_unlocked": true,
+  "subsystems_total": 23,
+  "subsystems_production_ready": 17,
+  "dashboard_url": "http://127.0.0.1:8420",
+  "bio_compute_pipeline": {
+    "best_accuracy": 0.524,
+    "chance_level": 0.25,
+    "datasets_with_features": 4,
+    "datasets_total": 5,
+    "cross_vendor_mea": "Giroldini vs MCS = zero common HDF5 keys",
+    "honest_baselines": {
+      "mlp_aggregate": 0.47,
+      "rf_aggregate": 0.437,
+      "knn_aggregate": 0.38,
+      "mlp_vs_rf_delta": "+3.3pp BioSDK advantage"
+    }
+  },
+  "honest_gaps": [
+    "logreg_svm_not_run_on_real_v33",
+    "cross_dataset_classification_not_done",
+    "no_external_api_validated",
+    "closed_loop_never_tested_on_hardware",
+    "zero_beta_participants",
+    "no_pip_install",
+    "nsi_adapter_registry_empty"
+  ],
+  "claims_policy": {
+    "first_biological_computer": "NOT_CLAIMED",
+    "gpu_replacement": "NOT_CLAIMED",
+    "live_biogpu_proof": "NOT_CLAIMED",
+    "energy_superiority": "NOT_CLAIMED",
+    "global_uniqueness": "NOT_CLAIMED",
+    "live_actuation": "BLOCKED_BY_DEFAULT"
+  },
+  "next_actions_priority": [
+    "logreg_svm_on_real_v33_matrix",
+    "cross_dataset_classification_giroldini_vs_mcs",
+    "label_integration_for_mcs_sleep",
+    "first_nsi_adapter_certification",
+    "publish_evidence_bundle",
+    "download_openneuro_ds007558_eeg",
+    "consolidate_to_biosdk_core_v2.0",
+    "external_api_validation",
+    "live_closed_loop_on_simulator",
+    "pip_install_biosdk"
+  ]
+}

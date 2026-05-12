@@ -1,0 +1,8 @@
+services:
+  biogpu-core:
+    build: .
+    image: biogpu-core:v4.7
+    command: bash scripts/run_biogpu_v47_powerpc_smoke.sh
+    volumes:
+      - ./data/external:/app/data/external
+      - ./outputs:/app/outputs

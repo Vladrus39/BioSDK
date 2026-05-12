@@ -1,0 +1,408 @@
+from __future__ import annotations
+
+import csv
+import json
+from dataclasses import asdict, dataclass, field
+from pathlib import Path
+from typing import Literal
+
+ClaimStatus = Literal["supported", "partial", "planned", "requires_live_lab", "requires_power_pc"]
+
+
+@dataclass(frozen=True)
+class BioGPUReleaseComponentV30:
+    version: str
+    name: str
+    contribution: str
+    evidence: str
+    status: ClaimStatus
+    next_dependency: str = ""
+    def to_dict(self) -> dict: return asdict(self)
+
+
+@dataclass(frozen=True)
+class BioGPUClaimV30:
+    claim_id: str
+    statement: str
+    current_status: ClaimStatus
+    supporting_versions: list[str] = field(default_factory=list)
+    evidence_summary: str = ""
+    required_next_evidence: str = ""
+    boundary: str = ""
+    def to_dict(self) -> dict: return asdict(self)
+
+
+@dataclass(frozen=True)
+class BioGPUPaperSectionV30:
+    file_name: str
+    title: str
+    purpose: str
+    required_inputs: list[str] = field(default_factory=list)
+    completion_state: str = "draft"
+    def to_dict(self) -> dict: return asdict(self)
+
+
+@dataclass(frozen=True)
+class BioGPUV30Manifest:
+    version: str
+    title: str
+    main_goal: str
+    release_type: str
+    components: list[BioGPUReleaseComponentV30]
+    claims: list[BioGPUClaimV30]
+    paper_sections: list[BioGPUPaperSectionV30]
+    power_pc_backlog: list[str]
+    live_lab_backlog: list[str]
+    safety_boundary: list[str]
+    def to_dict(self) -> dict:
+        return {
+            "version": self.version,
+            "title": self.title,
+            "main_goal": self.main_goal,
+            "release_type": self.release_type,
+            "components": [x.to_dict() for x in self.components],
+            "claims": [x.to_dict() for x in self.claims],
+            "paper_sections": [x.to_dict() for x in self.paper_sections],
+            "power_pc_backlog": list(self.power_pc_backlog),
+            "live_lab_backlog": list(self.live_lab_backlog),
+            "safety_boundary": list(self.safety_boundary),
+        }
+
+
+def build_v30_components() -> list[BioGPUReleaseComponentV30]:
+    return [
+        BioGPUReleaseComponentV30("v1.2", "condition/spot analysis", "culture-matched baseline-vs-LightStim and spot-level response profile", "real preprocessed MEA/spike dataset analysis", "supported"),
+        BioGPUReleaseComponentV30("v1.3-v1.7", "pulse windows and controls", "pulse-window reconstruction, feature vectors, readout, robustness plan", "11,547 pulse-window working set and controls", "partial", "power-PC rerun for paper-grade shuffles"),
+        BioGPUReleaseComponentV30("v1.8", "BioGPU runtime core", "BioGPUJob -> substrate -> trace -> result contract", "replay runtime over public biological response vectors", "supported"),
+        BioGPUReleaseComponentV30("v1.9", "engineering blueprint", "real BioGPU architecture, live MEA interface concept, material visualization", "architecture docs and dry-run scaffold", "supported"),
+        BioGPUReleaseComponentV30("v2.0", "prototype stack", "physical form, connection architecture, lab boundaries", "prototype manifest and visual specification", "supported"),
+        BioGPUReleaseComponentV30("v2.1", "ideal wetware stack", "BioGPU-A1 ideal working sample with dimensions and formulas", "engineering reference design; no wet-lab SOP replacement", "partial", "qualified lab SOP and selected vendor platform"),
+        BioGPUReleaseComponentV30("v2.2", "hardware blueprint", "BOM, modules, connection table, signal chain, power-PC spec", "hardware docs and machine-readable blueprint", "supported"),
+        BioGPUReleaseComponentV30("v2.3", "benchmark registry", "task contracts, metrics, controls and success gates", "machine-readable registry and readiness matrix", "supported"),
+        BioGPUReleaseComponentV30("v2.4", "session manager", "run manifest, audit log, result bundle modes", "dry-run result bundle", "supported"),
+        BioGPUReleaseComponentV30("v2.5", "vendor adapter stubs", "safe vendor-neutral MEA/HD-MEA adapter contracts", "dry-run adapters; no live pinout/stimulation settings", "supported"),
+        BioGPUReleaseComponentV30("v2.6", "encoder layer", "digital task -> abstract biological pattern", "spatial, temporal, rate, hybrid abstract encoders", "supported"),
+        BioGPUReleaseComponentV30("v2.7", "readout layer", "features/trace -> prediction/result", "centroid, logistic, SVM, online centroid readout scaffolds", "supported"),
+        BioGPUReleaseComponentV30("v2.8", "closed-loop controller", "task -> encoder -> substrate -> readout -> reward -> next action", "safe dry-run closed-loop controller", "supported"),
+        BioGPUReleaseComponentV30("v2.9", "energy/performance model", "energy, latency, throughput and baseline comparison model", "measurement scaffold; not a GPU advantage claim", "supported"),
+        BioGPUReleaseComponentV30("v3.0", "whitepaper package", "single project narrative, methods, results template, limitations and roadmap", "release package generated by this module", "supported"),
+    ]
+
+
+def build_v30_claims() -> list[BioGPUClaimV30]:
+    return [
+        BioGPUClaimV30("C1_real_biological_signal", "The public MEA dataset contains a real spatial biological response signal usable by BioGPU-Core as an evidence layer.", "supported", ["v1.2", "v1.3-v1.7"], "Culture-matched spot-level response profile and pulse-window feature pipeline exist in the project.", "Paper-grade rerun with fixed manifest and stronger shuffle controls.", "This does not yet prove live closed-loop BioGPU operation."),
+        BioGPUClaimV30("C2_replay_biogpu_runtime", "A replay BioGPU substrate can expose public biological response vectors through BioGPUJob/BioGPUTrace/BioGPUResult contracts.", "supported", ["v1.8", "v2.4"], "Replay runtime, session manager and result bundling exist.", "Power-PC execution using the session/result bundle contract.", "Replay substrate is not a substitute for live tissue latency and energy measurements."),
+        BioGPUClaimV30("C3_engineering_feasibility_plan", "BioGPU-A1 has a coherent engineering design: material, hardware modules, software layers, connection map and run modes.", "supported", ["v1.9", "v2.0", "v2.1", "v2.2", "v2.5"], "Blueprint, BOM, connection table, wetware reference design and vendor adapter contracts are present.", "Selection of one concrete vendor platform and qualified lab SOP.", "High-level design only; not a live lab protocol or vendor driver."),
+        BioGPUClaimV30("C4_full_software_control_loop", "BioGPU-Core has the software skeleton for task encoding, substrate interaction, decoding, reward and adaptation.", "supported", ["v2.3", "v2.4", "v2.6", "v2.7", "v2.8"], "Benchmark registry, encoders, readouts and closed-loop dry-run controller exist.", "Integration test that runs registry task -> encoder -> replay substrate -> readout -> result bundle end-to-end.", "The current closed-loop is dry-run/replay; no live biological actuation has been performed."),
+        BioGPUClaimV30("C5_energy_comparison_framework", "BioGPU-Core can compare energy/latency/throughput under a shared benchmark and measurement boundary.", "supported", ["v2.9"], "Energy/performance model and baseline comparison scaffold exist.", "Measured power logs from CPU/GPU baselines and future BioGPU hardware.", "No actual BioGPU energy advantage is claimed yet."),
+        BioGPUClaimV30("C6_live_biogpu_prototype", "A real living-neuronal BioGPU prototype can run task-aligned closed-loop benchmarks.", "requires_live_lab", ["v1.9", "v2.0", "v2.1", "v2.2", "v2.5", "v2.8"], "The design and software interfaces are prepared.", "Qualified live MEA/HD-MEA implementation, vendor SDK backend, lab SOP, safety review and live result bundle.", "Not yet demonstrated in this repository."),
+        BioGPUClaimV30("C7_gpu_advantage", "BioGPU can outperform or be more energy-efficient than conventional GPU/CPU baselines on selected tasks.", "planned", ["v2.3", "v2.8", "v2.9"], "Only the comparison framework exists.", "Same-task measured baselines, live BioGPU energy/latency, accuracy gates, statistical confidence intervals.", "This is a future claim, not a present result."),
+    ]
+
+
+def build_v30_sections() -> list[BioGPUPaperSectionV30]:
+    return [
+        BioGPUPaperSectionV30("paper/BIOGPU_CORE_WHITEPAPER.md", "BioGPU-Core Whitepaper", "Main narrative: goal, architecture, evidence, roadmap."),
+        BioGPUPaperSectionV30("paper/METHODS.md", "Methods", "Dataset, pulse-window construction, runtime contracts, benchmark scaffolds."),
+        BioGPUPaperSectionV30("paper/RESULTS_TEMPLATE.md", "Results Template", "Tables and placeholders for power-PC and live-lab reruns."),
+        BioGPUPaperSectionV30("paper/LIMITATIONS.md", "Limitations", "Boundaries: replay vs live, no GPU advantage claim, no wet-lab SOP."),
+        BioGPUPaperSectionV30("paper/ROADMAP_TO_LIVE_BIOGPU.md", "Roadmap to Live BioGPU", "Implementation ladder from replay to live MEA/HD-MEA."),
+        BioGPUPaperSectionV30("paper/CLAIM_LADDER_V30.md", "Claim Ladder", "Machine-verifiable claim status and next evidence."),
+        BioGPUPaperSectionV30("paper/REPRODUCTION_CHECKLIST.md", "Reproduction Checklist", "How to rerun locally, on power-PC and in a qualified lab."),
+        BioGPUPaperSectionV30("paper/PAPER_FIGURE_PLAN.md", "Figure Plan", "Expected paper figures and source artifacts."),
+    ]
+
+
+def build_v30_manifest() -> BioGPUV30Manifest:
+    return BioGPUV30Manifest(
+        version="v3.0",
+        title="BioGPU-Core v3.0: Whitepaper and Release Package",
+        main_goal="Design and implement a real working biological computing accelerator: encoder -> living/replay substrate -> readout -> benchmark -> energy/task comparison.",
+        release_type="whitepaper_and_project_package",
+        components=build_v30_components(), claims=build_v30_claims(), paper_sections=build_v30_sections(),
+        power_pc_backlog=["Run fixed-manifest v1.7/v2.4 pulse readout with 100-1000 label shuffles.", "Run multi-seed negative sampling sweeps and feature ablations.", "Export paper-grade confidence intervals and all result bundles.", "Run CPU/GPU baseline timing and energy proxy measurements under v2.9 schema.", "Add DANDI/Allen task-aligned runs if datasets are available locally."],
+        live_lab_backlog=["Select one MEA/HD-MEA platform and vendor SDK.", "Map vendor backend to the v2.5 adapter contract.", "Use qualified lab SOPs for wetware preparation and maintenance.", "Run dry-run -> replay -> live_lab mode transition with audit/result bundles.", "Measure live latency, stability, reproducibility and energy boundary."],
+        safety_boundary=["No wet-lab recipe is provided as an executable protocol.", "No live stimulation amplitudes, pulse widths, charge densities, pinouts or wiring steps are included.", "Live work requires qualified laboratory SOPs, vendor documentation and applicable safety/ethics review.", "GPU advantage is a future claim requiring measured evidence; v3.0 does not assert it as proven."],
+    )
+
+
+def _bullets(items: list[str]) -> str: return "\n".join(f"- {x}" for x in items)
+
+
+def render_project_summary(manifest: BioGPUV30Manifest) -> str:
+    return f"""# BioGPU-Core v3.0 Project Summary
+
+## Main goal
+
+{manifest.main_goal}
+
+## Release type
+
+`{manifest.release_type}`
+
+## What v3.0 means
+
+BioGPU-Core v3.0 is the project consolidation layer. It does not claim that a live BioGPU has already outperformed a GPU. It consolidates the real-data evidence layer, replay runtime, hardware design, benchmark registry, session/bundle system, encoder/readout/closed-loop software stack and energy comparison model into one whitepaper-grade package.
+
+## Current strongest supported claims
+
+{_bullets([c.claim_id + ': ' + c.statement for c in manifest.claims if c.current_status == 'supported'])}
+
+## Still not proven
+
+{_bullets([c.claim_id + ': ' + c.statement for c in manifest.claims if c.current_status != 'supported'])}
+
+## Safety and scientific boundary
+
+{_bullets(manifest.safety_boundary)}
+"""
+
+
+def render_claim_ladder(manifest: BioGPUV30Manifest) -> str:
+    rows = [f"| {c.claim_id} | {c.current_status} | {', '.join(c.supporting_versions)} | {c.required_next_evidence} |" for c in manifest.claims]
+    return "# BioGPU-Core v3.0 Claim Ladder\n\n| Claim | Status | Supporting versions | Required next evidence |\n|---|---:|---|---|\n" + "\n".join(rows) + "\n\n## Boundaries\n\n" + "\n".join(f"- **{c.claim_id}:** {c.boundary}" for c in manifest.claims) + "\n"
+
+
+def render_whitepaper(manifest: BioGPUV30Manifest) -> str:
+    component_lines = "\n".join(f"- **{x.version} — {x.name}:** {x.contribution} ({x.status})." for x in manifest.components)
+    return f"""# BioGPU-Core Whitepaper v3.0
+
+## Abstract
+
+BioGPU-Core is a research and engineering project for designing a real biological computing accelerator. The project starts from public MEA-derived biological response data, builds a replay substrate and software runtime, defines hardware and wetware reference designs, and prepares a benchmark/energy framework for future live MEA/HD-MEA implementation.
+
+## Goal
+
+{manifest.main_goal}
+
+## Architecture
+
+```text
+task -> encoder -> replay/live substrate -> trace/features -> readout -> result -> benchmark/energy accounting
+```
+
+For live implementation:
+
+```text
+BioGPU runtime -> vendor adapter -> acquisition/stimulation electronics -> MEA/HD-MEA chip -> living neuronal network -> recorded response -> readout
+```
+
+## Release lineage
+
+{component_lines}
+
+## Evidence position
+
+The project currently supports a real-data replay and engineering-design claim. It does not yet support a live biological hardware advantage claim. v3.0 separates what is demonstrated, what is scaffolded, and what remains for power-PC or qualified laboratory work.
+
+## Current claim boundary
+
+{_bullets(manifest.safety_boundary)}
+
+## Next milestone
+
+The next major milestone after v3.0 is an end-to-end reproducibility pass: fixed manifest, replay run, result bundle, power-PC statistics and preparation for a vendor-specific live-lab backend.
+"""
+
+
+def render_methods(manifest: BioGPUV30Manifest) -> str:
+    return """# Methods Draft v3.0
+
+## Data layer
+
+The project uses public MEA-derived data as the first evidence layer. Earlier versions constructed recording-level, spot-level and pulse-window analyses, then moved from analysis scripts toward a BioGPU runtime abstraction.
+
+## Runtime contracts
+
+```text
+BioGPUJob -> BioGPU substrate -> BioGPUTrace -> feature/readout -> BioGPUResult
+```
+
+## Benchmark registry
+
+The benchmark registry defines each task by input contract, encoder, substrate requirement, readout, metrics, controls, success gates and hardware readiness.
+
+## Encoder/readout stack
+
+The encoder layer maps digital task payloads into abstract biological patterns. The readout layer maps feature batches or traces into predictions and BioGPUResult objects. Both remain vendor-neutral and do not define live electrical parameters.
+
+## Closed loop
+
+```text
+observation -> readout -> reward/error -> policy decision -> next abstract action
+```
+
+Current v3.0 closed-loop operation is dry-run/replay only.
+
+## Energy/performance accounting
+
+The energy model separates power components and latency components. It is a measurement scaffold, not a proof of advantage.
+"""
+
+
+def render_results_template(manifest: BioGPUV30Manifest) -> str:
+    return """# Results Template v3.0
+
+Populate after power-PC and future live-lab runs.
+
+## Table 1 — Real-data pulse-window benchmark
+
+| Run ID | Dataset | Windows | Features | Split | Readout | Accuracy | AUC | Shuffles | p-value | Bundle |
+|---|---:|---:|---:|---|---|---:|---:|---:|---:|---|
+| TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
+
+## Table 2 — Encoder/readout ablation
+
+| Run ID | Encoder | Feature set | Readout | Accuracy | AUC | Notes |
+|---|---|---|---|---:|---:|---|
+| TODO | TODO | TODO | TODO | TODO | TODO | TODO |
+
+## Table 3 — Energy/latency comparison
+
+| Run ID | System | Benchmark | Accuracy gate passed | Mean latency ms | Energy/task J | Throughput task/s | Measurement boundary |
+|---|---|---|---:|---:|---:|---:|---|
+| TODO | CPU | TODO | TODO | TODO | TODO | TODO | TODO |
+| TODO | GPU | TODO | TODO | TODO | TODO | TODO | TODO |
+| TODO | BioGPU replay | TODO | TODO | TODO | TODO | TODO | TODO |
+| TODO | BioGPU live | TODO | TODO | TODO | TODO | TODO | TODO |
+
+## Figure checklist
+
+- target delta percentile histogram;
+- target delta rate by spot;
+- pulse-window readout ROC/confusion matrix;
+- architecture diagram;
+- benchmark registry map;
+- energy/latency comparison chart;
+- claim ladder figure.
+"""
+
+
+def render_limitations(manifest: BioGPUV30Manifest) -> str:
+    return """# Limitations v3.0
+
+## Replay is not live hardware
+
+The replay substrate can expose public biological response vectors through BioGPU contracts, but it does not measure live biological latency, stability, adaptation or energy.
+
+## No proven GPU advantage yet
+
+The project includes an energy/performance model, but no live BioGPU measurement has yet established superiority over GPU/CPU baselines.
+
+## Dataset limitations
+
+Public preprocessed datasets may lack complete raw TTL/protocol details. Any pulse-window benchmark must document reconstruction assumptions and controls.
+
+## Wetware boundary
+
+This repository is not a wet-lab SOP. It intentionally avoids operational culturing instructions, live stimulation settings, pinouts, wiring procedures and vendor-specific safety limits.
+
+## Vendor boundary
+
+Vendor adapters are stubs/contracts. A real adapter must be implemented against official SDKs and verified with qualified hardware documentation.
+"""
+
+
+def render_roadmap(manifest: BioGPUV30Manifest) -> str:
+    return f"""# Roadmap to Live BioGPU v3.0
+
+## Phase 1 — Power-PC reproducibility
+
+{_bullets(manifest.power_pc_backlog)}
+
+## Phase 2 — Vendor backend selection
+
+- Select one bridge platform for first live tests.
+- Bind vendor SDK to the v2.5 adapter contract.
+- Preserve dry-run mode as a safety gate.
+
+## Phase 3 — Qualified live-lab transition
+
+{_bullets(manifest.live_lab_backlog)}
+
+## Phase 4 — Advantage claim testing
+
+- Freeze benchmark and accuracy gate.
+- Measure CPU/GPU/neuromorphic baselines.
+- Measure live BioGPU boundary power and latency.
+- Compare only after successful same-task result bundles.
+"""
+
+
+def render_reproduction_checklist(manifest: BioGPUV30Manifest) -> str:
+    return """# Reproduction Checklist v3.0
+
+## Local smoke test
+
+```bash
+bash scripts/run_biogpu_v30_local_check.sh
+```
+
+## Expected v3.0 outputs
+
+- `outputs/realdata_zenodo_14363732_v30_whitepaper/v30_manifest.json`
+- `outputs/realdata_zenodo_14363732_v30_whitepaper/BIOGPU_V30_PROJECT_SUMMARY.md`
+- `outputs/realdata_zenodo_14363732_v30_whitepaper/v30_claim_ladder.csv`
+- `outputs/realdata_zenodo_14363732_v30_whitepaper/v30_release_components.csv`
+
+## Power-PC rerun
+
+Run the existing v2.4/v2.9 bundle workflow with a fixed manifest. Store all JSON, CSV, figures and logs in a single result bundle.
+
+## Live-lab rerun
+
+Only after vendor SDK/backend selection and qualified lab SOP approval. Live mode must preserve audit logs and result bundles.
+"""
+
+
+def render_figure_plan(manifest: BioGPUV30Manifest) -> str:
+    return """# Paper Figure Plan v3.0
+
+## Figure 1 — BioGPU claim ladder
+Source: `paper/CLAIM_LADDER_V30.md` and `outputs/.../v30_claim_ladder.csv`.
+
+## Figure 2 — BioGPU architecture
+Show the stack: task, encoder, substrate, trace, readout, result, benchmark, energy accounting.
+
+## Figure 3 — Physical BioGPU-A1 concept
+Use the material visualization and hardware blueprint from v1.9-v2.2.
+
+## Figure 4 — Real-data evidence layer
+Use v1.2-v1.7 target response / pulse-window figures.
+
+## Figure 5 — Software runtime and session bundle
+Show the run manifest, audit log and result bundle flow.
+
+## Figure 6 — Energy/performance comparison plan
+Use v2.9 baseline comparison CSV and future measured values.
+"""
+
+
+def write_v30_package(out_dir: str | Path, root_dir: str | Path | None = None) -> dict:
+    out = Path(out_dir); out.mkdir(parents=True, exist_ok=True)
+    manifest = build_v30_manifest()
+    (out / "BIOGPU_V30_PROJECT_SUMMARY.md").write_text(render_project_summary(manifest), encoding="utf-8")
+    (out / "BIOGPU_V30_CLAIM_LADDER.md").write_text(render_claim_ladder(manifest), encoding="utf-8")
+    (out / "v30_manifest.json").write_text(json.dumps(manifest.to_dict(), indent=2, ensure_ascii=False), encoding="utf-8")
+    with (out / "v30_release_components.csv").open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=["version", "name", "contribution", "evidence", "status", "next_dependency"]); w.writeheader()
+        for c in manifest.components: w.writerow(c.to_dict())
+    with (out / "v30_claim_ladder.csv").open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=["claim_id", "statement", "current_status", "supporting_versions", "evidence_summary", "required_next_evidence", "boundary"]); w.writeheader()
+        for c in manifest.claims:
+            row = c.to_dict(); row["supporting_versions"] = ";".join(c.supporting_versions); w.writerow(row)
+    summary = {"version": manifest.version, "component_count": len(manifest.components), "claim_count": len(manifest.claims), "supported_claim_count": sum(1 for x in manifest.claims if x.current_status == "supported"), "paper_section_count": len(manifest.paper_sections), "gpu_advantage_claim_proven": False, "live_biogpu_prototype_proven": False, "output_dir": str(out)}
+    (out / "v30_summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
+    if root_dir is not None:
+        root = Path(root_dir); paper_dir = root / "paper"; paper_dir.mkdir(parents=True, exist_ok=True)
+        (paper_dir / "BIOGPU_CORE_WHITEPAPER.md").write_text(render_whitepaper(manifest), encoding="utf-8")
+        (paper_dir / "METHODS.md").write_text(render_methods(manifest), encoding="utf-8")
+        (paper_dir / "RESULTS_TEMPLATE.md").write_text(render_results_template(manifest), encoding="utf-8")
+        (paper_dir / "LIMITATIONS.md").write_text(render_limitations(manifest), encoding="utf-8")
+        (paper_dir / "ROADMAP_TO_LIVE_BIOGPU.md").write_text(render_roadmap(manifest), encoding="utf-8")
+        (paper_dir / "CLAIM_LADDER_V30.md").write_text(render_claim_ladder(manifest), encoding="utf-8")
+        (paper_dir / "REPRODUCTION_CHECKLIST.md").write_text(render_reproduction_checklist(manifest), encoding="utf-8")
+        (paper_dir / "PAPER_FIGURE_PLAN.md").write_text(render_figure_plan(manifest), encoding="utf-8")
+        (root / "README_BIOGPU_CORE.md").write_text(render_project_summary(manifest), encoding="utf-8")
+    return summary

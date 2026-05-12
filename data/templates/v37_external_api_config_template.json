@@ -1,0 +1,9 @@
+{
+  "version": "v3.7",
+  "platform": "finalspark_remote_wetware",
+  "endpoint": "mock://finalspark",
+  "token_env": "FINALSPARK_TOKEN",
+  "access_mode": "read_only",
+  "dataset_ref": "optional external experiment or exported file id",
+  "notes": "Do not put live stimulation settings, pinout, wiring or wet-lab recipe data here."
+}
