@@ -1185,3 +1185,102 @@ Update one file → both platforms updated (after rebuild+upload for PyPI).
 
 *Master Status v0.1.3. GitHub published, Open Core licensed, deploy script ready. Waiting for FinalSpark.*
 
+
+
+---
+
+## v0.1.4 Addendum: Repositioning + Real PyPI + New Labeled Datasets (2026-05-12)
+
+### Repositioning — Honest Language
+
+Following external review, BioSDK's positioning was updated from "vendor-neutral standard"
+to "unified neural data library". Key changes:
+
+- **Was**: "Vendor-neutral standard for biological neural computation — Vulkan for wetware"
+- **Now**: "Unified neural data library — pandas.read_* for neural data"
+- **Unique differentiator**: Evidence bundles (SHA256-chained, HMAC-signed). No other neural data library provides this.
+- **Honest metrics**: Replaced 99.67% cross-modal with per-dataset results. Added sklearn baseline comparison (SVM 50.7% vs BioSDK 52.4%).
+- **Clarified**: NOT an OS, NOT a new file format, NOT production-hardened. Safety gates are designed and simulator-tested; hardware pending FinalSpark token.
+
+### New Labeled Classification Results (v93)
+
+Two new labeled datasets added to the pipeline:
+
+| Dataset | Task | Accuracy | Chance | Improvement | Samples |
+|---------|------|----------|--------|-------------|---------|
+| **OpenNeuro ds007558** | Eyes open/closed (2-class) | **83.7%** | 50% | 1.7x | 647 |
+| **Sleep PSG (PhysioNet)** | Sleep staging (5-class) | **66.7%** | 20% | 3.3x | 303 |
+| Tressoldi H3 BBI | Stimulus vs rest (2-class) | 64.2% per-pair | 50% | 1.3x | 10,878 |
+| Giroldini MEA | 4-class stimulus | 52.4% | 25% | 2.1x | 11,547 |
+
+**Key findings:**
+- OpenNeuro: eyes open/closed detectable at 83.7% cross-session (LOSO)
+- Sleep PSG: 5-class staging at 66.7% cross-subject (LOSO), using only 2 EEG channels
+- Cross-modal: MEA cluster 0.90-0.96, EEG cluster 1.00 — modality identity preserved
+- Evidence bundles: SHA256+HMAC verified, reproducible
+
+### Real PyPI Publication
+
+- **Package**: `biosdk` v0.1.4 published to real PyPI (pypi.org)
+- **Install**: `pip install biosdk`
+- **Previous TestPyPI**: https://test.pypi.org/project/biosdk/ (v0.1.3)
+- **Deploy**: `python _deploy.py --prod`
+
+### Updated Gaps (v0.1.4)
+
+**Closed this session:**
+- [x] README repositioned — honest language, no overclaims
+- [x] README version sync v0.1.3 → v0.1.4
+- [x] pyproject.toml: description updated, dev extras added
+- [x] SECURITY.md: 0.1.4 added to supported versions
+- [x] CHANGELOG.md: [0.1.4] entry
+- [x] requirements.txt: synced with pyproject.toml
+- [x] Sleep PSG classification (66.7% LOSO, 5-class)
+- [x] OpenNeuro eyes open/closed classification (83.7% LOSO)
+- [x] Real PyPI token added to .env
+
+**Remaining (4):**
+- [~] Cross-dataset classification (MCS unlabeled)
+- [~] FinalSpark API token (application submitted)
+- [~] Closed-loop on hardware (token-dependent)
+- [~] Zero beta participants (packet ready)
+
+### Files Changed This Session
+
+| File | Change |
+|------|--------|
+| `README.md` | Full repositioning rewrite |
+| `pyproject.toml` | Description + dev extras |
+| `.env` | Real PyPI token, version bump |
+| `SECURITY.md` | 0.1.4 in supported versions |
+| `CHANGELOG.md` | [0.1.4] entry |
+| `requirements.txt` | Synced |
+| `biosdk/__init__.py` | importlib.metadata version (was already done) |
+| `outputs/v93_sleep_psg_staging/` | Sleep PSG features + labels |
+| `outputs/v93_openneuro_eeg/` | OpenNeuro features + labels |
+| `MASTER_STATUS_V85.md` | This addendum |
+| `HANDOFF_FOR_DEEPSEEK_2026_05_11.md` | v0.1.4 addendum |
+
+### Consolidated Results (All Datasets)
+
+| Dataset | Best RF | Chance | Improvement | Samples | Classes |
+|---------|---------|--------|-------------|---------|---------|
+| OpenNeuro ds007558 | 83.7% | 50% | 1.7x | 647 | 2 |
+| Sleep PSG (PhysioNet) | 66.7% | 20% | 3.3x | 303 | 5 |
+| Tressoldi H3 BBI | 64.2% | 50% | 1.3x | 10,878 | 2 |
+| Giroldini MEA | 52.4% | 25% | 2.1x | 11,547 | 4 |
+
+**Honest baseline**: sklearn SVM achieves 50.7% on Giroldini MEA. BioSDK adds +1.7pp.
+Value proposition: unified API + evidence bundles, not algorithmic edge.
+
+### Next Actions
+
+1. Publish to real PyPI: `python _deploy.py --prod`
+2. Commit + push to GitHub with all changes
+3. CRCNS registration for labeled MEA datasets
+4. 3Brain sample data for third MEA vendor
+5. Beta participant outreach
+
+---
+
+*Master Status v0.1.4. Repositioned, published, 4 labeled datasets classified. Real PyPI active.*

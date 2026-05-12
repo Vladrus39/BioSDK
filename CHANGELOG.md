@@ -2,6 +2,14 @@
 
 All notable changes to BioSDK.
 
+## [0.1.4] — 2026-05-12
+
+### Fixed
+- `biosdk.__version__` now reads from `importlib.metadata` instead of a hardcoded string — `pyproject.toml` is the single source of truth, no more drift between versions.
+- README replaced "Cryptographically signed evidence bundle" with "Integrity-verified evidence bundle (HMAC-SHA256)" — aligns with the honest description in `SECURITY.md`.
+- `requirements.txt` synced with `pyproject.toml` — `fastapi`/`uvicorn` moved to dashboard extras only; `pytest` moved to dev extras.
+- `SECURITY.md` supported-versions table now includes `0.1.4`.
+
 ## [0.1.3] — 2026-05-12
 
 ### Added

@@ -9,6 +9,7 @@ GitHub: https://github.com/Vladrus39/BioSDK/issues
 
 | Version | Supported |
 |---------|-----------|
+| 0.1.4   | Yes       |
 | 0.1.3   | Yes       |
 | < 0.1.3 | No        |
 

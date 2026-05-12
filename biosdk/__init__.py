@@ -29,7 +29,17 @@ import numpy as np
 # Public API
 # ═══════════════════════════════════════════════════════════════════════
 
-__version__ = "0.1.3"
+# Single source of truth: pyproject.toml. If running from an uninstalled
+# checkout (no dist-info on sys.path), fall back to a sentinel so the
+# attribute is always defined.
+from importlib.metadata import PackageNotFoundError as _PkgNotFound
+from importlib.metadata import version as _pkg_version
+
+try:
+    __version__ = _pkg_version("biosdk")
+except _PkgNotFound:
+    __version__ = "0.0.0+local"
+
 __all__ = [
     "open", "features", "readout", "evidence_bundle",
     "list_adapters", "certified_adapters", "__version__",

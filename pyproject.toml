@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "biosdk"
 version = "0.1.4"
-description = "BioSDK — Vendor-Neutral Standard for Biological Neural Computation. One API for any neural data: MEA, EEG, ecephys, Sleep, RNG."
+description = "BioSDK — Unified Neural Data Library. One open() for MEA, EEG, ecephys, Sleep, RNG. Evidence bundles included."
 readme = "README.md"
 requires-python = ">=3.10,<3.14"
 license = "MIT"
@@ -54,7 +54,8 @@ dependencies = [
 dashboard = ["fastapi>=0.100", "uvicorn>=0.23"]
 mne = ["mne>=1.0"]
 nwb = ["pynwb>=2.0"]
-all = ["biosdk[dashboard,mne,nwb]"]
+dev = ["pytest>=7.0", "build>=1.0", "twine>=4.0"]
+all = ["biosdk[dashboard,mne,nwb,dev]"]
 
 [project.urls]
 Homepage = "https://github.com/Vladrus39/BioSDK"

@@ -1,3 +1,1 @@
-git add -A
-git commit -m "v0.1.4: security fixes, cleanup, CHANGELOG, SECURITY, deploy"
-git push
+git add SESSION_START_PROMPT.md && git commit -m "SESSION_START_PROMPT v0.1.4 final" && git push

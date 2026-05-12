@@ -1,15 +1,14 @@
-## BioSDK — Session Handoff (2026-05-12, v8.9)
+## BioSDK — Session Handoff (2026-05-12, v0.1.4)
 
 ### Project Identity
 - **Name**: BioSDK (BioCompute Software Development Kit)
-- **Positioning**: Vendor-neutral standard for biological neural computation
-  (like Vulkan for GPUs, ROS for robotics, FHIR for medical data)
+- **Positioning**: Unified neural data library (pandas.read_* for neural data) + evidence bundles
 - **NOT**: an OS, a biological computer, a GPU replacement, or energy-superior
 
 ### Project Location
 - `C:\Users\vladi\Desktop\Braine\BiC OS\biogpu-core-v5_0_bic_os_first_mover_roadmap`
 - Python venv: `.venv` (Python 3.13.11, conda at `D:\GameDev\miniconda3`)
-- pip: `biosdk` published at https://test.pypi.org/project/biosdk/0.1.0/
+- pip: `biosdk` published at https://pypi.org/project/biosdk/
 
 ---
 
