@@ -1,86 +1,101 @@
-# BioSDK v0.1.4 — Session Start Prompt
+# BioGPU-Core v4.4 — Session Start Prompt (2026-05-13)
 
-**Скопируй это в новое окно DeepSeek:**
+**Copy this into a new DeepSeek window:**
 
 ---
 
-Продолжай с `HANDOFF_FOR_DEEPSEEK_2026_05_11.md`. Проект BioSDK v0.1.4.
+Continue with `HANDOFF_FOR_DEEPSEEK_2026_05_11.md`. Project BioGPU-Core v4.4.
 
-Путь: `C:\Users\vladi\Desktop\Braine\BiC OS\biogpu-core-v5_0_bic_os_first_mover_roadmap`
+Path: `C:\Users\vladi\Desktop\Braine\BiC OS\biogpu-core-v5_0_bic_os_first_mover_roadmap`
 Python: `D:\GameDev\miniconda3\python.exe` (3.13.11)
+Node: `C:\Program Files\nodejs\node.exe` v24.13.0
+pip: `biosdk` v0.1.4 on PyPI
 
-## Быстрый старт
+## CRITICAL: Read HANDOFF_FOR_DEEPSEEK_2026_05_11.md first — v4.3→v4.4 HONEST AUDIT inside.
+
+## GPU/System Status (VERIFIED)
+- **Numba 0.65.0** — JIT активен в BioReservoirV40._step()
+- **PyTorch 2.10.0+cu128** — CUDA=YES. GPU tensors ready.
+- **GPU: NVIDIA RTX 5070 Ti Laptop** — available for CUDA kernels.
+- **CPU: 32 cores** — parallel processing available.
+
+## v4.3 Session Results (Что СДЕЛАНО)
+
+### BioReservoirV40 — Numba JIT (1.3x ускорение)
+- `biogpu/substrates/bio_reservoir_numba.py` — @njit функции для Izhikevich step, multi-step, STDP
+- `biogpu/substrates/bio_reservoir_v40.py` — интегрирован JIT-путь с NumPy fallback
+
+### CLI — biosdk (8 команд)
+- `biosdk/cli.py` — open, features, readout, evidence, os, benchmark, list, version
+- `pyproject.toml` — entry point: `biosdk = "biosdk.cli:main"`
+
+### BioCompute OS v4.0 (полноценная)
+- `biogpu/production/permissions_v40.py` — RBAC: 4 роли, 9 прав, API key + HMAC session auth
+- `biogpu/production/lab_approval_v40.py` — 4-стадийный lab approval workflow с safety gates
+- `biogpu/production/evidence_ledger_v40.py` — SHA256-chained tamper-evident ledger
+- Все три интегрированы в `BioComputeOS`
+
+### Closed-loop v32
+- `biogpu/closed_loop/bioreservoir_closed_loop_v32.py` — BioReservoirV40 вместо SimulatedMEA
+
+### Docker
+- `Dockerfile` — Python 3.13, Numba, FastAPI, EXPOSE 8420
+- `docker-compose.yml` — полный стек
+
+### Свип — В ПРОЦЕССЕ
+- `_biogpu_v4_sweep_finish.py` — скрипт создан и запущен
+- Phase A (neuron_types): ✅ 6 конфигов, best=0.4833 (FS-heavy, input_scale=10.0)
+- Phase B (42-MEA, 7518 seqs): 🔄 выполняется
+- Результаты: `outputs/v4_bio_sweep/V4_SWEEP_FINISH.json`
+
+## P0 Priorities (НОВАЯ СЕССИЯ)
+
+1. **Проверить статус свипа** — `dir outputs\v4_bio_sweep\V4_SWEEP_FINISH.json`
+2. **Если свип НЕ завершён** — перезапустить: `python -u _biogpu_v4_sweep_finish.py`
+3. **Если 42-MEA < 15% BA** — multi-timescale резервуар (100ms + 1s + 10s)
+4. **Если свип завершён** — проанализировать результаты, записать в evidence bundle
+
+## P1
+5. PyTorch CUDA batch reservoir (параллельная симуляция на GPU)
+6. Очистить outputs/ от 100+ симулированных JSON
+7. Запустить `_biogpu_v4_neuron_models.py` (LIF vs Izhikevich vs AdEx)
+
+## P2
+8. CI/CD GitHub Actions
+9. Документация MkDocs
+10. Real-time MEA streaming
+
+## Quick Commands
 
 ```powershell
-cd "C:\Users\vladi\Desktop\Braine\BiC OS\biogpu-core-v5_0_bic_os_first_mover_roadmap"
+# Статус свипа
+dir outputs\v4_bio_sweep\V4_SWEEP_FINISH.json
 
-# Статус
-python _session_check.py
+# Перезапуск свипа (если не завершён)
+D:\GameDev\miniconda3\python.exe -u _biogpu_v4_sweep_finish.py
 
-# Адаптеры
-python _list_adapters.py
+# CLI
+D:\GameDev\miniconda3\python.exe -m biosdk.cli version
 
-# Деплой (сборка + PyPI + GitHub)
-python _deploy.py --prod
+# Дашборд
+D:\GameDev\miniconda3\python.exe -m biogpu.dashboard.server_v40
+
+# Сравнение моделей нейронов
+D:\GameDev\miniconda3\python.exe -u _biogpu_v4_neuron_models.py
+
+# Бенчмарк
+D:\GameDev\miniconda3\python.exe _biogpu_v4_benchmark.py
+
+# Деплой
+D:\GameDev\miniconda3\python.exe _deploy.py --prod
 ```
 
-## Приоритеты
-
-1. Проверить почту `vladimoryachok@gmail.com` на ответ от FinalSpark
-2. Если токен есть — сертифицировать FinalSpark адаптер, closed-loop на live hardware
-3. Если токена нет — разослать beta-приглашения, скачать CRCNS/3Brain датасеты
-4. Кросс-датасет классификация с лейблами (Sleep, OpenNeuro, Tressoldi, Giroldini)
-5. Публикация на реальный PyPI (уже опубликовано v0.1.4)
-
-## Что нового в v0.1.4 (сессия 2026-05-12)
-
-- **Перепозиционирование**: "Unified neural data library" вместо "vendor-neutral standard"
-- **Реальный PyPI**: `pip install biosdk` (pypi.org, не test.pypi.org)
-- **GitHub описание**: обновлено — Unified neural data library + evidence bundles
-- **README переписан**: честные метрики per-dataset, evidence bundles на первом плане
-- **Sleep PSG staging**: 66.7% cross-subject (5-class, chance 20%, 3.3x)
-- **OpenNeuro eyes open/closed**: 83.7% cross-session (2-class, chance 50%, 1.7x)
-- **4 размеченных датасета**: Sleep, OpenNeuro, Tressoldi, Giroldini
-- **Честный бейзлайн**: sklearn SVM 50.7% vs BioSDK 52.4% на Giroldini MEA
-- **Документация**: MASTER_STATUS, HANDOFF, CHANGELOG, SECURITY — всё обновлено
-- **7 NSI-1.0 адаптеров, 83 conformance теста**
-
-## Ключевые файлы
-
-| Файл | Назначение |
-|------|-----------|
-| `HANDOFF_FOR_DEEPSEEK_2026_05_11.md` | Полная история (v0.1.4 addendum) |
-| `MASTER_STATUS_V85.md` | Единый источник правды (v0.1.4 addendum) |
-| `README.md` | Описание (GitHub + PyPI) — переписан |
-| `pyproject.toml` | Метаданные pip пакета v0.1.4 |
-| `_deploy.py` | Скрипт деплоя (поддерживает --prod) |
-| `.env` | Все секреты: GitHub, PyPI, FinalSpark (gitignored) |
-| `CHANGELOG.md` | История версий (включая [0.1.4]) |
-| `SECURITY.md` | Политика безопасности (0.1.4 в supported versions) |
-| `LICENSE` + `COMMERCIAL_LICENSE.md` | Open Core лицензии |
-
-## Результаты классификации (все датасеты)
-
-| Dataset | Accuracy | Chance | Improvement | Samples |
-|---------|----------|--------|-------------|---------|
-| OpenNeuro Eyes (2-class) | 83.7% | 50% | 1.7x | 647 |
-| Sleep PSG (5-class) | 66.7% | 20% | 3.3x | 303 |
-| Tressoldi EEG (2-class) | 64.2% | 50% | 1.3x | 10,878 |
-| Giroldini MEA (4-class) | 52.4% | 25% | 2.1x | 11,547 |
-
-**Честный бейзлайн**: sklearn SVM 50.7% на Giroldini MEA. BioSDK: +1.7 п.п.
-Ценность — в unified API + evidence bundles, не в алгоритмическом преимуществе.
-
-## Важно
-
-- **Позиционирование**: Unified neural data library, НЕ standard, НЕ OS, НЕ Vulkan
-- **Токены**: `.env` (не в git). PyPI — реальный токен. `%USERPROFILE%\.pypirc` — testpypi
-- SSH: `C:\Users\vladi\.ssh\id_ed25519_biosdk`
-- Коммиты: `_deploy.py` делает всё сам. Для ручных — `_git_commit.bat`
-- Длинные однострочники ломаются — писать в .py файлы
-- Эмодзи и юникод-стрелки (→, ✅) крашат консоль — избегать
-- Dashboard на порту 8420 (может висеть)
+## RULES
+- NO STUBS — всё на Mock FinalSpark API с реальными Giroldini HDF5
+- BioCompute OS = BioCompute OS (не переименовывать)
+- **GPU доступен — ИСПОЛЬЗОВАТЬ. Numba JIT на каждом горячем цикле.**
+- 100% completion, никаких TODO
 
 ---
 
-*BioSDK v0.1.4. Unified neural data library. Real PyPI. Open Core. 4 labeled datasets. Evidence bundles.*
+*BioGPU-Core v4.4. GPU + Numba активны. CLI создан. OS достроена. Свип в процессе. 100% real data.*

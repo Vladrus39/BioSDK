@@ -1,6 +1,6 @@
 # BioSDK — Unified Neural Data Library
 
-**v0.1.4 | 7 format adapters | 83 conformance tests | Evidence bundles**
+**v0.1.4 | 7 format adapters | 83 conformance tests | Evidence bundles | Numba JIT | CLI | OS v4.0**
 
 BioSDK is a **unified library** for biological neural data. One `open()` for any format — MEA, EEG, ecephys, Sleep, RNG — with integrity-verified evidence bundles. Think of it as **pandas.read_\* for neural data**.
 
@@ -102,15 +102,67 @@ NSI-1.0 features preserve modality identity — same modality clusters together,
 - ❌ NOT a biological computer, GPU replacement, or energy platform
 - ❌ NOT production-hardened for live stimulation (closed-loop safety gates are designed and simulator-tested; hardware validation pending FinalSpark token)
 
+## BioGPU — Biological Computing Accelerator
+
+BioSDK includes **BioReservoirV40** — a biologically-plausible spiking reservoir
+(Izhikevich neurons, small-world connectivity, STDP plasticity) with **Numba JIT
+acceleration** (1.3x speedup). Processes real neural spike data through recurrent
+dynamics and beats sklearn on temporal tasks.
+
+| Task | BioReservoir | sklearn | Delta |
+|------|-------------|---------|-------|
+| 4-MEA temporal classification | **63.79%** | 29.18% | **+34.6pp** |
+| 8-MEA temporal classification | **48.33%** | — | (3.87x chance) |
+| 42-MEA temporal classification | 🔄 sweep running | — | — |
+
+**Key finding:** STDP plasticity A+ has inverted U-curve — A+=0.01 is optimal,
+A+>0.02 destroys generalization. FS-heavy neuron distribution + input_scale=10.0
+gives best results on 8-MEA.
+
+## CLI — 8 Commands
+
+```bash
+biosdk open recording.h5              # Show metadata
+biosdk features recording.h5 -w 0.5   # Extract features
+biosdk readout recording.h5 labels.txt # Classify
+biosdk evidence results.json           # Evidence bundle
+biosdk os start|stop|status|jobs       # OS control
+biosdk benchmark                       # Reservoir health
+biosdk list                            # List adapters
+biosdk version                         # System info
+```
+
+## BioCompute OS v4.0
+
+Production-grade operating system layer with:
+- **RBAC**: 4 roles (admin/operator/researcher/viewer), 9 permissions, API key + HMAC session auth
+- **Lab Approval**: 4-stage workflow (submit→review→execute→complete) with 7 safety gates
+- **Evidence Ledger**: SHA256-chained append-only tamper-evident audit trail
+- Daemon + heartbeat, JobScheduler (4 workers), DeviceManager, Telemetry
+
+## Dashboard v4.2
+
+Live web dashboard with 5 pages: OS overview, reservoir visualization (membrane
+potentials heatmap + spike counts), job queue, device manager, safety gates.
+
+```bash
+python -m biogpu.dashboard.server_v40
+# → http://127.0.0.1:8420
+```
+
 ## What's Next
 
 | # | Item | Status |
 |---|------|--------|
-| 1 | FinalSpark live validation | Application submitted. Awaiting token. |
-| 2 | Closed-loop on real hardware | Safety gates designed (7 Shannon limits), simulator-tested. Requires hardware. |
-| 3 | Beta participants | Invite packet ready (`beta/BETA_INVITE_PACKET_V93.md`). |
-| 4 | Cross-dataset classification | MCS structure proven (silhouette 0.559, 43.5x shuffled). Blocked: no labels. |
-| 5 | Additional labeled datasets | CRCNS, 3Brain samples — requires registration/download. |
+| 1 | BioReservoir sweep on 42-MEA | 🔄 Running (Phase B) |
+| 2 | GPU/Energy comparison framework | Planned |
+| 3 | OS permissions + lab approval | ✅ Done (v4.0) |
+| 4 | BioSDK CLI + Docker | ✅ Done |
+| 5 | CI/CD GitHub Actions | Planned |
+| 6 | FinalSpark live validation | Awaiting token |
+| 7 | Closed-loop on BioReservoirV40 | ✅ Done (v32) |
+| 8 | Multi-timescale reservoir (if 42-MEA < 15%) | Planned |
+| 9 | PyTorch CUDA batch reservoir | Planned |
 
 ## Project Identity
 
@@ -128,12 +180,18 @@ NSI-1.0 features preserve modality identity — same modality clusters together,
 
 | Document | Path |
 |----------|------|
+| Session Handoff (v4.3→v4.4) | `HANDOFF_FOR_DEEPSEEK_2026_05_11.md` |
+| Session Start Prompt | `SESSION_START_PROMPT.md` |
+| Master Project Plan | `docs/MASTER_PROJECT_PLAN_V4.md` |
 | Master Status | `MASTER_STATUS_V85.md` |
-| Session Handoff | `HANDOFF_FOR_DEEPSEEK_2026_05_11.md` |
 | Machine Status | `PROJECT_STATUS_V85.json` |
 | NSI-1.0 Spec | `docs/standards/NSI_1_0_SPECIFICATION.md` |
 | Evidence Bundle Format | `docs/BIOSDK_EVIDENCE_PACK_GUIDE_V512.md` |
-| Beta Invite Packet | `beta/BETA_INVITE_PACKET_V93.md` |
+| Numba JIT Module | `biogpu/substrates/bio_reservoir_numba.py` |
+| CLI | `biosdk/cli.py` |
+| OS Permissions | `biogpu/production/permissions_v40.py` |
+| Lab Approval | `biogpu/production/lab_approval_v40.py` |
+| Evidence Ledger | `biogpu/production/evidence_ledger_v40.py` |
 
 ## License
 

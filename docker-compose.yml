@@ -1,8 +1,58 @@
+# BioSDK v4.3 — Full Stack
+# BioCompute OS + Dashboard + BioReservoir
+#
+# Start:
+#   docker compose up -d
+#
+# Stop:
+#   docker compose down
+#
+# Dashboard: http://localhost:8420
+# OS health:  http://localhost:8420/api/v1/health
+
 services:
-  biogpu-core:
+  # ── BioSDK Core (OS + BioReservoir + Dashboard) ────────────────────
+  biosdk:
     build: .
-    image: biogpu-core:v4.7
-    command: bash scripts/run_biogpu_v47_powerpc_smoke.sh
+    image: biosdk:v4.3
+    container_name: biosdk-core
+    restart: unless-stopped
+    ports:
+      - "8420:8420"
     volumes:
-      - ./data/external:/app/data/external
+      # Mount data directory for real spike data access
+      - ./data:/app/data:ro
+      # Mount outputs for evidence bundles, sweep results, OS state
       - ./outputs:/app/outputs
+      # Mount configs for production overrides
+      - ./configs:/app/configs:ro
+    environment:
+      - BIOSDK_SIGNING_KEY=${BIOSDK_SIGNING_KEY:-biosdk-docker-v4.3}
+      - BIOSDK_DATA_DIR=/app/data
+      - BIOSDK_OUTPUT_DIR=/app/outputs
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "python", "-c", "import biosdk; print(f'v{biosdk.__version__}')"]
+      interval: 30s
+      timeout: 10s
+      start_period: 15s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 4G
+
+  # ── Jupyter Lab (optional — uncomment to enable) ──────────────────
+  # jupyter:
+  #   image: jupyter/scipy-notebook:latest
+  #   container_name: biosdk-jupyter
+  #   ports:
+  #     - "8888:8888"
+  #   volumes:
+  #     - ./data:/home/jovyan/data:ro
+  #     - ./outputs:/home/jovyan/outputs
+  #     - ./examples:/home/jovyan/examples:ro
+  #   environment:
+  #     - JUPYTER_TOKEN=biosdk
+  #   command: start-notebook.sh --NotebookApp.token='biosdk'

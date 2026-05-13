@@ -73,4 +73,5 @@ pythonpath = ["."]
 addopts = "-q"
 
 [project.scripts]
+biosdk = "biosdk.cli:main"
 biosdk-dashboard = "biogpu.dashboard.server_v71:main"
